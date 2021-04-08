@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Sqwid.Model;
 using System;
@@ -39,23 +40,45 @@ namespace Sqwid.Controllers
             return Ok(group);
         }
 
+        // idk if this one works
+        [HttpGet("users/{id}")]
+        public ActionResult<List<User>> GetUsersForGroup(int id)
+        {
+            List<User> usersInGroup = _context.UserGroups.Where(x => x.UserGroupGroupId == id).Select(x => x.UserGroupUser).ToList();
+            return Ok(usersInGroup);
+        }
+
         // POST api/<GroupsController>
         [HttpPost]
         public ActionResult<Group> Post(Group incomingGroup)
         {
-            Session["UserName"] = UserNameTextBox.Text;
+            Group newGroup = new Group();
+            if (ModelState.IsValid)
+            {
+                var name = HttpContext.Session.GetString("username");
+                newGroup.GroupAdminId = _context.Users.Where(x => x.UserUserName == name).FirstOrDefault().UserId;
+                newGroup.GroupDescription = incomingGroup.GroupDescription;
+                newGroup.GroupName = incomingGroup.GroupName;
+
+                _context.Add(newGroup);
+                _context.SaveChanges();
+
+                return Ok(newGroup);
+            }
+
+            return BadRequest();
         }
 
-        // PUT api/<GroupsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<GroupsController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<GroupsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<GroupsController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

@@ -29,14 +29,30 @@ namespace Sqwid.Controllers
             return Ok(users);
         }
 
-        [HttpGet]
+        // idk if this one works
+        [HttpGet("groups/{id}")]
+        public ActionResult<List<Group>> GetGroupsForUser(int id)
+        {
+            List<Group> groups = _context.UserGroups.Where(x => x.UserGroupUserId == id).Select(x => x.UserGroupGroup).ToList();
+            return Ok(groups);
+        }
+
+        [HttpGet("login")]
         public ActionResult<User> GetUserByLogin(string username, string password)
         {
             User myUser = _context.Users.Where(x => x.UserUserName == username && x.UserPassword == password).FirstOrDefault();
-            return Ok(myUser);
+            if (myUser != null)
+            {
+                HttpContext.Session.SetString("username", username);
+                return Ok(myUser);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public ActionResult<User> GetUserById(int id)
         {
             User myUser = _context.Users.Where(x => x.UserId == id).FirstOrDefault();
