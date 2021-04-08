@@ -29,6 +29,20 @@ namespace Sqwid.Controllers
             return Ok(users);
         }
 
+        [HttpGet]
+        public ActionResult<User> GetUserByLogin(string username, string password)
+        {
+            User myUser = _context.Users.Where(x => x.UserUserName == username && x.UserPassword == password).FirstOrDefault();
+            return Ok(myUser);
+        }
+
+        [HttpGet]
+        public ActionResult<User> GetUserById(int id)
+        {
+            User myUser = _context.Users.Where(x => x.UserId == id).FirstOrDefault();
+            return Ok(myUser);
+        }
+
         [HttpPost]
         public ActionResult<User> CreateUser(User incomingData)
         {
