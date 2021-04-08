@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace Sqwid.Model
+namespace Sqwid
 {
     public partial class User
     {
@@ -19,7 +18,6 @@ namespace Sqwid.Model
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }
         public string UserEmail { get; set; }
-        [Key]
         public int UserId { get; set; }
         public string UserUserName { get; set; }
         public string UserPassword { get; set; }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace Sqwid.Model
+namespace Sqwid
 {
     public partial class Group
     {
@@ -12,7 +11,7 @@ namespace Sqwid.Model
         {
             Events = new HashSet<Event>();
         }
-        [Key]
+
         public int GroupId { get; set; }
         public string GroupName { get; set; }
         public string GroupDescription { get; set; }

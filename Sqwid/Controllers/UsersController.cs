@@ -29,5 +29,24 @@ namespace Sqwid.Controllers
             return Ok(users);
         }
 
+        [HttpPost]
+        public ActionResult<User> CreateUser(User incomingData)
+        {
+            if (ModelState.IsValid)
+            {
+                User newUser = new User();
+                newUser.UserEmail = incomingData.UserEmail;
+                newUser.UserFirstName = incomingData.UserFirstName;
+                newUser.UserLastName = incomingData.UserLastName;
+                newUser.UserPassword = incomingData.UserPassword;
+                _context.Users.Add(newUser);
+                _context.SaveChanges();
+                return Ok(newUser);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
     }
 }

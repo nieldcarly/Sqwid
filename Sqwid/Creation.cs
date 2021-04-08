@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
-namespace Sqwid.Model
+namespace Sqwid
 {
     public partial class Creation
     {
@@ -17,7 +16,6 @@ namespace Sqwid.Model
         public string CreationDescription { get; set; }
         public string CreationTitle { get; set; }
         public int? CreationCreatorId { get; set; }
-        [Key]
         public int CreationId { get; set; }
         public int? CreationNumFavorites { get; set; }
         public bool? CreationIsPublic { get; set; }
