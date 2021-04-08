@@ -48,6 +48,18 @@ namespace Sqwid.Controllers
             return Ok(usersInGroup);
         }
 
+        [HttpPost("adduser/{gid}/{uid}")]
+        public ActionResult AddUserToGroup(int gid, int uid)
+        {
+            UserGroup userGroup = new UserGroup();
+            userGroup.UserGroupGroupId = gid;
+            userGroup.UserGroupUserId = uid;
+            _context.UserGroups.Add(userGroup);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
         // POST api/<GroupsController>
         [HttpPost]
         public ActionResult<Group> Post(Group incomingGroup)
@@ -62,6 +74,8 @@ namespace Sqwid.Controllers
 
                 _context.Add(newGroup);
                 _context.SaveChanges();
+
+                AddUserToGroup(newGroup.GroupId, newGroup.GroupAdminId ?? 0);
 
                 return Ok(newGroup);
             }
