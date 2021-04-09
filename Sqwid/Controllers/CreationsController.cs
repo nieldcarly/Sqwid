@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Sqwid.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,10 +17,12 @@ namespace Sqwid.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly SqwidDBContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public CreationsController(IConfiguration configuration, SqwidDBContext context)
+        public CreationsController(IConfiguration configuration, SqwidDBContext context, IWebHostEnvironment env)
         {
             _configuration = configuration;
+            _env = env;
             _context = context;
 
         }
@@ -67,5 +71,31 @@ namespace Sqwid.Controllers
                 return BadRequest(ModelState);
             }
         }
+
+        [Route("SaveFile")]
+        [HttpPost]
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath = _env.ContentRootPath + "/Photos/" + filename;
+
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
+
+                return new JsonResult(filename);
+            }
+            catch (Exception)
+            {
+
+                return new JsonResult("anonymous.png");
+            }
+        }
+
     }
 }
