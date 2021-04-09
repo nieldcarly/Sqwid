@@ -50,8 +50,8 @@ namespace Sqwid.Controllers
             if (ModelState.IsValid)
             {
                 Event newEvent = new Event();
-                var name = HttpContext.Session.GetString("username");
-                newEvent.EventAdmin = _context.Users.Where(x => x.UserUserName == name).FirstOrDefault().UserId;
+                //var name = HttpContext.Session.GetString("username");
+                newEvent.EventAdmin = incomingData.EventAdmin;
                 newEvent.EventCategory = incomingData.EventCategory;
                 newEvent.EventDescription = incomingData.EventDescription;
                 newEvent.EventDueDate = DateTime.Now.Date.AddDays(7);

@@ -53,8 +53,8 @@ namespace Sqwid.Controllers
             if (ModelState.IsValid)
             {
                 Creation newCreation = new Creation();
-                var name = HttpContext.Session.GetString("username");
-                newCreation.CreationCreatorId = _context.Users.Where(x => x.UserUserName == name).FirstOrDefault().UserId;
+                //var name = HttpContext.Session.GetString("username");
+                newCreation.CreationCreatorId = incomingData.CreationCreatorId;
                 newCreation.CreationDescription = incomingData.CreationDescription;
                 newCreation.CreationImagePath = incomingData.CreationImagePath;
                 newCreation.CreationIsPublic = incomingData.CreationIsPublic;

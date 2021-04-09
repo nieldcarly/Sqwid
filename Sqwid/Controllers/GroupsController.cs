@@ -67,8 +67,8 @@ namespace Sqwid.Controllers
             Group newGroup = new Group();
             if (ModelState.IsValid)
             {
-                var name = HttpContext.Session.GetString("username");
-                newGroup.GroupAdminId = _context.Users.Where(x => x.UserUserName == name).FirstOrDefault().UserId;
+                //var name = HttpContext.Session.GetString("username");
+                newGroup.GroupAdminId = incomingGroup.GroupAdminId;
                 newGroup.GroupDescription = incomingGroup.GroupDescription;
                 newGroup.GroupName = incomingGroup.GroupName;
 

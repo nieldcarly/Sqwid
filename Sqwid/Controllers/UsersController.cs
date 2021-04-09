@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Sqwid.Controllers
 {
@@ -37,14 +38,16 @@ namespace Sqwid.Controllers
             return Ok(groups);
         }
 
-        [HttpGet("login")]
-        public ActionResult<User> GetUserByLogin(string username, string password)
+        [HttpPost("login")]
+        public ActionResult<Login> GetUserByLogin(Credentials userCreds)
         {
-            User myUser = _context.Users.Where(x => x.UserUserName == username && x.UserPassword == password).FirstOrDefault();
+            User myUser = _context.Users.Where(x => x.UserUserName == userCreds.Username && x.UserPassword == userCreds.Password).FirstOrDefault();
             if (myUser != null)
             {
-                HttpContext.Session.SetString("username", username);
-                return Ok(myUser);
+                Login myLogin = new Login();
+                myLogin.token = myUser.UserId.ToString();
+                //HttpContext.Session.SetString("username", username);
+                return Ok(myLogin);
             }
             else
             {

@@ -1,14 +1,23 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import useToken from './useToken';
 
 import { Home } from './Home'
 import { Group } from './Group'
 import { User } from './User'
 import { Navigation } from './Navigation'
+import Login from './Login';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
+  const { token, setToken } = useToken();
+
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+
   return (
     <BrowserRouter>
       <div className="container">
