@@ -35,6 +35,10 @@ namespace Sqwid.Controllers
         public ActionResult<List<Group>> GetGroupsForUser(int id)
         {
             List<Group> groups = _context.UserGroups.Where(x => x.UserGroupUserId == id).Select(x => x.UserGroupGroup).ToList();
+            foreach (var g in groups)
+            {
+                g.GroupAdmin = _context.Users.Where(u => u.UserId == g.GroupAdminId).FirstOrDefault();
+            }
             return Ok(groups);
         }
 
