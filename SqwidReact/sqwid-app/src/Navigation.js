@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap';
-
+import style from './site.css';
 
 export class Navigation extends Component {
     render() {
         return(
-            <Navbar bg="dark" expand="lg">
+            <Navbar bg="dark" expand="lg" className="navstyle">
                 <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav>

@@ -9,6 +9,7 @@ namespace Sqwid.Model
     {
         public int UserGroupGroupId { get; set; }
         public int UserGroupUserId { get; set; }
+        public int UserGroupId { get; set; }
 
         public virtual Group UserGroupGroup { get; set; }
         public virtual User UserGroupUser { get; set; }

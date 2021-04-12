@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -8,9 +7,13 @@ namespace Sqwid.Model
 {
     public partial class Event
     {
+        public Event()
+        {
+            Creations = new HashSet<Creation>();
+        }
+
         public string EventName { get; set; }
         public string EventDescription { get; set; }
-        [Key]
         public int EventId { get; set; }
         public int EventGroupId { get; set; }
         public int? EventAdmin { get; set; }
@@ -21,5 +24,6 @@ namespace Sqwid.Model
 
         public virtual User EventAdminNavigation { get; set; }
         public virtual Group EventGroup { get; set; }
+        public virtual ICollection<Creation> Creations { get; set; }
     }
 }

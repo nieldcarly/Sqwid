@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.sqwidtitle {
+  font-family: 'Righteous', cursive;
+}

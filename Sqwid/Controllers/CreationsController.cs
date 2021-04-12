@@ -35,17 +35,32 @@ namespace Sqwid.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<List<Creation>> GetCreations(int id)
+        public ActionResult<Creation> GetCreation(int id)
         {
-            Creation creations = _context.Creations.Where(x => x.CreationId == id).FirstOrDefault();
+            Creation creation = _context.Creations.Where(x => x.CreationId == id).FirstOrDefault();
+            return Ok(creation);
+        }
+
+        [HttpGet("group/{id}")]
+        public ActionResult<List<Creation>> GetCreationsForGroup(int id)
+        {
+            List<Creation> creations = _context.Creations.Where(x => x.CreationGroupId == id).ToList();
             return Ok(creations);
         }
 
-        //[HttpGet("group/{id}")]
-        //public ActionResult<List<Creation>> GetCreationsForGroup(int id)
-        //{
-        // TO DO
-        //}
+        [HttpGet("event/{id}")]
+        public ActionResult<List<Creation>> GetCreationsForEvent(int id)
+        {
+            List<Creation> creations = _context.Creations.Where(x => x.CreationEventId == id).ToList();
+            return Ok(creations);
+        }
+
+        [HttpGet("user/{id}")]
+        public ActionResult<List<Creation>> GetCreationsForUser(int id)
+        {
+            List<Creation> creations = _context.Creations.Where(x => x.CreationCreatorId == id).ToList();
+            return Ok(creations);
+        }
 
         [HttpPost]
         public ActionResult<Creation> CreateCreation(Creation incomingData)
@@ -53,8 +68,10 @@ namespace Sqwid.Controllers
             if (ModelState.IsValid)
             {
                 Creation newCreation = new Creation();
-                //var name = HttpContext.Session.GetString("username");
+                newCreation.CreationEventId = incomingData.CreationEventId;
                 newCreation.CreationCreatorId = incomingData.CreationCreatorId;
+                newCreation.CreationCreatorFirstName = _context.Users.Where(x => x.UserId == incomingData.CreationCreatorId).FirstOrDefault().UserFirstName;
+                newCreation.CreationCreatorFirstName = _context.Users.Where(x => x.UserId == incomingData.CreationCreatorId).FirstOrDefault().UserLastName;
                 newCreation.CreationDescription = incomingData.CreationDescription;
                 newCreation.CreationImagePath = incomingData.CreationImagePath;
                 newCreation.CreationIsPublic = incomingData.CreationIsPublic;
@@ -95,6 +112,15 @@ namespace Sqwid.Controllers
 
                 return new JsonResult("anonymous.png");
             }
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteCreation(int id)
+        {
+            Creation creation = _context.Creations.Where(x => x.CreationId == id).FirstOrDefault();
+            _context.Creations.Remove(creation);
+            _context.SaveChanges();
+            return Ok();
         }
 
     }

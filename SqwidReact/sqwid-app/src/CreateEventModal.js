@@ -1,9 +1,10 @@
 import React,{Component} from 'react';
 import {Modal,Button, Row, Col, Form} from 'react-bootstrap';
 
-export class CreateGroupModal extends Component{
+export class CreateEventModal extends Component{
     constructor(props){
         super(props);
+        this.groupId = props.groupId;
         this.handleSubmit=this.handleSubmit.bind(this);
     }
 
@@ -12,23 +13,28 @@ export class CreateGroupModal extends Component{
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch('http://localhost:52121/api/groups/',{
+        fetch('http://localhost:52121/api/events/',{
             method:'POST',
             headers:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                GroupName:event.target.GroupName.value,
-                GroupDescription:event.target.GroupDescription.value,
-                GroupAdminId:userId,
-                GroupAdmin: null,
-                Events: []
+                EventName:event.target.EventName.value,
+                EventDescription:event.target.EventDescription.value,
+                EventGroupId:this.groupId,
+                EventAdmin: userId,
+                EventStartDate: null,
+                EventDueDate: null,
+                EventPublicVoting: false,
+                EventCategory: event.target.EventCategory.value,
+                EventAdminNavigation: null,
+                EventGroup: null
             })
         })
         .then(res=>res.json())
         .then((result)=>{
-            alert(result.GroupName + ' added!');
+            alert(result.EventName + ' added!');
         },
         (error)=>{
             alert('Failed');
@@ -46,7 +52,7 @@ centered
 >
     <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-            Add Group
+            Add Event
         </Modal.Title>
     </Modal.Header>
     <Modal.Body>
@@ -55,17 +61,20 @@ centered
             <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="GroupAdminId">
-                        <Form.Label>GroupName</Form.Label>
-                        <Form.Control type="text" name="GroupName" required 
-                        placeholder="Group Name"/>
-                        <Form.Label>GroupDescription</Form.Label>
-                        <Form.Control type="text" name="GroupDescription" required 
-                        placeholder="Group Description"/>
+                        <Form.Label>EventName</Form.Label>
+                        <Form.Control type="text" name="EventName" required 
+                        placeholder="Event Name"/>
+                        <Form.Label>EventDescription</Form.Label>
+                        <Form.Control type="text" name="EventDescription" required 
+                        placeholder="Event Description"/>
+                        <Form.Label>EventCategory</Form.Label>
+                        <Form.Control type="text" name="EventCategory" required 
+                        placeholder="Event Category"/>
                     </Form.Group>
 
                     <Form.Group>
                         <Button variant="primary" type="submit">
-                            Add Group
+                            Add Event
                         </Button>
                     </Form.Group>
                 </Form>

@@ -1,23 +1,22 @@
-import React,{Component} from 'react';
-import {Table} from 'react-bootstrap';
-
+import React, { Component } from 'react';
+import { Table } from 'react-bootstrap';
+import { Button, ButtonToolbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { CreateEventModal } from './CreateEventModal';
+    
 export class Event extends Component {
-
     constructor(props) {
         super(props);
-        this.state={groups:[]}
+        this.groupId = (props.match.params.groupId);
+        this.state={events:[]}
     }
 
     getGroupEvents() {
-        // const tokenString = sessionStorage.getItem('token');
-        // const userToken = JSON.parse(tokenString);
-        // const userId = userToken?.token
-        let urlString = 'http://localhost:52121/api/events/groups/' + eventId; //process.env.REACT_APP_API
-        console.log(urlString);
-        fetch('http://localhost:52121/api/events/groups/' + eventId)
+        fetch('http://localhost:52121/api/events/groups/' + this.groupId)
         .then(response=>response.json())
         .then(data=>{
             this.setState({events:data})
+            console.log(data)
         });
     }
 
@@ -25,12 +24,14 @@ export class Event extends Component {
         this.getGroupEvents();
     }
 
-    componentDidUpdate() {
-        this.getGroupEvents();
-    }
+    // componentDidUpdate() {
+    //     this.getGroupEvents();
+    // }
 
     render() {
-        const {events, eventname, eventdescription, eventadmin}=this.state;
+        const {events}=this.state;
+        let addModalClose = () => this.setState({ addModalShow: false });
+
         return(
             <div >
                 <Table className="mt-4" striped bordered hover size="sm">
@@ -60,19 +61,35 @@ export class Event extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {groups.map(event =>
+                        {events.map(event =>
                             <tr key={event.EventId}>
                                 <td>{event.EventName}</td>
                                 <td>{event.EventDescription}</td>
                                 <td>{event.EventCategory}</td>
                                 <td>{event.EventStartDate}</td>
                                 <td>{event.EventDueDate}</td>
-                                <td>{event.AdminId}</td>
-                                <td>End Event</td>
+                                <td>{event.EventAdmin}</td>
+                                <td style={{ textAlign: 'center' }}>
+                                    <Link to={`/creations/${event.EventId}`}
+                                        style={{ marginRight: 30 }}
+                                        className="btn btn-primary"
+                                        activeclassName="is-active"
+                                    >
+                                        View Creations
+                                    </Link>
+                                    <Button variant="danger">End Event</Button>
+                                </td>
                             </tr>
                             )}
                     </tbody>
                 </Table>
+                <ButtonToolbar>
+                    <Button variant="primary" onClick={() => this.setState({ addModalShow: true })}>
+                        Create Event
+                    </Button>
+                    <CreateEventModal show={this.state.addModalShow} onHide={addModalClose} groupId={this.groupId}></CreateEventModal>
+                </ButtonToolbar>
+                <Link to="/groups" className="btn btn-primary" style={{marginTop: 20}}>Return to Groups</Link>
             </div>
         )
     }

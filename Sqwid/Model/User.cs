@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -14,12 +13,12 @@ namespace Sqwid.Model
             Creations = new HashSet<Creation>();
             Events = new HashSet<Event>();
             Groups = new HashSet<Group>();
+            UserGroups = new HashSet<UserGroup>();
         }
 
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }
         public string UserEmail { get; set; }
-        [Key]
         public int UserId { get; set; }
         public string UserUserName { get; set; }
         public string UserPassword { get; set; }
@@ -28,5 +27,6 @@ namespace Sqwid.Model
         public virtual ICollection<Creation> Creations { get; set; }
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<UserGroup> UserGroups { get; set; }
     }
 }

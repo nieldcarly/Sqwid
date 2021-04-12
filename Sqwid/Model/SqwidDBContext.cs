@@ -31,8 +31,7 @@ namespace Sqwid.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=tcp:sqwid.database.windows.net,1433;Initial Catalog=SqwidDB;Persist Security Info=False;User ID=nieldca;Password=a0youknOdakine!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                optionsBuilder.UseSqlServer("Name=ConnectionStrings:SqwidDB");
             }
         }
 
@@ -42,9 +41,7 @@ namespace Sqwid.Model
 
             modelBuilder.Entity<Comment>(entity =>
             {
-                entity.Property(e => e.CommentId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("Comment.Id");
+                entity.Property(e => e.CommentId).HasColumnName("Comment.Id");
 
                 entity.Property(e => e.CommentCreationId).HasColumnName("Comment.CreationId");
 
@@ -90,13 +87,23 @@ namespace Sqwid.Model
 
             modelBuilder.Entity<Creation>(entity =>
             {
-                entity.Property(e => e.CreationId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("Creation.Id");
+                entity.Property(e => e.CreationId).HasColumnName("Creation.Id");
+
+                entity.Property(e => e.CreationCreatorFirstName)
+                    .HasMaxLength(50)
+                    .HasColumnName("Creation.CreatorFirstName");
 
                 entity.Property(e => e.CreationCreatorId).HasColumnName("Creation.CreatorId");
 
+                entity.Property(e => e.CreationCreatorLastName)
+                    .HasMaxLength(50)
+                    .HasColumnName("Creation.CreatorLastName");
+
                 entity.Property(e => e.CreationDescription).HasColumnName("Creation.Description");
+
+                entity.Property(e => e.CreationEventId).HasColumnName("Creation.EventId");
+
+                entity.Property(e => e.CreationGroupId).HasColumnName("Creation.GroupId");
 
                 entity.Property(e => e.CreationImagePath).HasColumnName("Creation.ImagePath");
 
@@ -114,13 +121,21 @@ namespace Sqwid.Model
                     .WithMany(p => p.Creations)
                     .HasForeignKey(d => d.CreationCreatorId)
                     .HasConstraintName("FK_Creations_Users");
+
+                entity.HasOne(d => d.CreationEvent)
+                    .WithMany(p => p.Creations)
+                    .HasForeignKey(d => d.CreationEventId)
+                    .HasConstraintName("FK_Creations_Events");
+
+                entity.HasOne(d => d.CreationGroup)
+                    .WithMany(p => p.Creations)
+                    .HasForeignKey(d => d.CreationGroupId)
+                    .HasConstraintName("FK_Creations_Groups");
             });
 
             modelBuilder.Entity<Event>(entity =>
             {
-                entity.Property(e => e.EventId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("Event.Id");
+                entity.Property(e => e.EventId).HasColumnName("Event.Id");
 
                 entity.Property(e => e.EventAdmin).HasColumnName("Event.Admin");
 
@@ -181,9 +196,7 @@ namespace Sqwid.Model
 
             modelBuilder.Entity<Group>(entity =>
             {
-                entity.Property(e => e.GroupId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("Group.Id");
+                entity.Property(e => e.GroupId).HasColumnName("Group.Id");
 
                 entity.Property(e => e.GroupAdminId).HasColumnName("Group.AdminId");
 
@@ -224,9 +237,7 @@ namespace Sqwid.Model
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.UserId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("User.Id");
+                entity.Property(e => e.UserId).HasColumnName("User.Id");
 
                 entity.Property(e => e.UserEmail)
                     .HasMaxLength(50)
@@ -251,22 +262,22 @@ namespace Sqwid.Model
 
             modelBuilder.Entity<UserGroup>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("User-Groups");
+
+                entity.Property(e => e.UserGroupId).HasColumnName("UserGroup.Id");
 
                 entity.Property(e => e.UserGroupGroupId).HasColumnName("User-Group.GroupId");
 
                 entity.Property(e => e.UserGroupUserId).HasColumnName("User-Group.UserId");
 
                 entity.HasOne(d => d.UserGroupGroup)
-                    .WithMany()
+                    .WithMany(p => p.UserGroups)
                     .HasForeignKey(d => d.UserGroupGroupId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_User-Groups_Groups");
 
                 entity.HasOne(d => d.UserGroupUser)
-                    .WithMany()
+                    .WithMany(p => p.UserGroups)
                     .HasForeignKey(d => d.UserGroupUserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_User-Groups_Users");

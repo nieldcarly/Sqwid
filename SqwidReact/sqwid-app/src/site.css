@@ -3,3 +3,62 @@
     flex-direction: column;
     align-items: center;
 }
+
+.main-header {
+    color: #ff8d09;
+    font-family: Righteous;
+    font-size: 50px;
+    float: left;
+    width: 50%;
+}
+
+.user-cards {
+    padding: 20px;
+}
+
+body {
+    background-color: transparent;
+}
+
+.navstyle {
+    margin-top: 4%;
+    width: fit-content;
+    float: right;
+}
+
+.bg-dark {
+    background-color: #ff8d09 !important;
+    border-radius: 15px;
+}
+
+a.bg-dark:hover {
+    background-color: #F8bc24 !important;
+    text-decoration: none;
+}
+
+a.bg-dark:focus {
+    background-color: #F8bc24 !important;
+}
+
+.card {
+    text-align: center;
+    margin: 10px;
+    vertical-align: top;
+    width: 15rem;
+}
+
+.carddeck {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.homeheader {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    color: #266867;
+    font-size: xxx-large;
+    font-variant-caps: all-petite-caps;
+    padding-bottom: 30px;
+}
