@@ -36,52 +36,10 @@ export class User extends Component {
         let addModalClose = () => this.setState({ addModalShow: false });
 
         return(
-            <div >
-                <Table className="mt-4" striped bordered hover size="sm">
-                    <thead>
-                        <tr style={{textAlign:"center", fontSize:28}}>
-                            <th colspan="5">
-                                My Creations
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                Preview
-                            </th>
-                            <th>
-                                Title
-                            </th>
-                            <th>
-                                Description
-                            </th>
-                            <th>
-                                Options
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {creations.map(creation =>
-                            <tr key={creation.CreationId}>
-                                <td style={{textAlign:"center"}}><Image height="100px" src={'http://localhost:52121/Photos/' + creation.CreationImagePath} className="user-cards"/></td>
-                                <td>{creation.CreationTitle}</td>
-                                <td>{creation.CreationDescription}</td>
-                                <td style={{ textAlign: 'center' }}>
-                                    <Link to={`/creationdetails/${creation.CreationId}`}
-                                        style={{ marginRight: 30 }}
-                                        className="btn btn-primary"
-                                        activeclassName="is-active"
-                                    >
-                                        View Creation
-                                    </Link>
-                                    <Button variant="danger">Delete Creation</Button>
-                                </td>
-                            </tr>
-                            )}
-                    </tbody>
-                </Table>
-                <div className="carddeck">
+            <div>
+                <div className="carddeck" style={{width: "100%"}}>
                     {creations.map(creation =>
-                        <Card>
+                        <Card kye={creation.CreationId}>
                             <Card.Img variant="top" src={'http://localhost:52121/Photos/' + creation.CreationImagePath} />
                             <Card.Body>
                                 <Card.Title>{creation.CreationTitle}</Card.Title>

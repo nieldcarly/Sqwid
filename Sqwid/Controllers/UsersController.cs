@@ -75,6 +75,7 @@ namespace Sqwid.Controllers
                 newUser.UserEmail = incomingData.UserEmail;
                 newUser.UserFirstName = incomingData.UserFirstName;
                 newUser.UserLastName = incomingData.UserLastName;
+                newUser.UserUserName = incomingData.UserUserName;
                 newUser.UserPassword = incomingData.UserPassword;
                 _context.Users.Add(newUser);
                 _context.SaveChanges();

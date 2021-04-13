@@ -17,11 +17,11 @@ import style from './site.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
-  const { token, setToken } = useToken();
+  // const { token, setToken } = useToken();
 
-  if(!token) {
-    return <Login setToken={setToken} />
-  }
+  // if(!token) {
+  //   return <Login setToken={setToken} />
+  // }
 
   return (
     <BrowserRouter>
@@ -40,6 +40,7 @@ function App() {
           <Route path="/event/:groupId" exact component={Event} />
           <Route path="/creations/:eventId" exact component={Creation} />
           <Route path="/creationdetails/:creationId" exact component={CreationDetails} />
+          <Route path="/login" exact component={Login}></Route>
         </Switch>
       </div>
     </BrowserRouter>    

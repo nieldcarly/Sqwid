@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .main-header {
@@ -24,6 +25,7 @@ body {
     margin-top: 4%;
     width: fit-content;
     float: right;
+    z-index: 1000;
 }
 
 .bg-dark {
@@ -45,6 +47,7 @@ a.bg-dark:focus {
     margin: 10px;
     vertical-align: top;
     width: 15rem;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 6%), 0 6px 20px 0 rgb(0 0 0 / 5%);
 }
 
 .carddeck {
@@ -61,4 +64,107 @@ a.bg-dark:focus {
     font-size: xxx-large;
     font-variant-caps: all-petite-caps;
     padding-bottom: 30px;
+    padding-top: 80px;
+}
+
+.headerimage {
+    vertical-align: middle;
+    border-style: none;
+    width: 100%;
+    border-radius: 2%;
+    opacity: 90%;
+}
+
+.headerimagecontainer {
+    position: relative;
+    text-align: center;
+    color: white;
+    z-index: 0;
+}
+
+.headerimagetext {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: xx-large;
+  }
+
+.btn-danger {
+    color: #fff;
+    background-color: #ff6409;
+    border-color: #ff6409;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+    color: #fff;
+    background-color: #e15300;
+    border-color: #e15300;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #40b0ae;
+    border-color: #40b0ae;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: #369392;
+    border-color: #369392;
+}
+
+.loginfields {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.loginlabels {
+    color: #1a6465;
+    font-weight: bold;
+}
+
+.createaccounttext {
+    color: #163b3b;
+    font-size: medium;
+    font-weight: bold;
+    padding-top: 50px;
+}
+
+.createaccountbtn {
+    margin-left: 15px;
+    font-size: smaller;
+    background-color: #f8bc24;
+    height: 2rem;
+}
+
+.yellowbtn {
+    background-color: #f8bc24;
+    border-color: #da9e07;
+}
+
+.yellowbtn:active, .yellowbtn:hover, .yellowbtn:target, .btn-primary:not(:disabled):not(.disabled):active {
+    background-color: #da9e07;
+    border-color: #da9e07;
+}
+
+.submitbtn {
+    margin-left: 4%;
+    background-color: #047472;
+}
+
+.mytable {
+    background-color:rgb(255,255,255, .7);
+    /* box-shadow: 0 1px 30px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 2%); */
 }

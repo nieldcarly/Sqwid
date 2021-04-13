@@ -55,10 +55,10 @@ centered
             <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="GroupAdminId">
-                        <Form.Label>GroupName</Form.Label>
+                        <Form.Label>Group Name</Form.Label>
                         <Form.Control type="text" name="GroupName" required 
                         placeholder="Group Name"/>
-                        <Form.Label>GroupDescription</Form.Label>
+                        <Form.Label>Group Description</Form.Label>
                         <Form.Control type="text" name="GroupDescription" required 
                         placeholder="Group Description"/>
                     </Form.Group>

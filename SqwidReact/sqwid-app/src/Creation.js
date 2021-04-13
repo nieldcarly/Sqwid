@@ -34,7 +34,7 @@ export class Creation extends Component {
         let addModalClose = () => this.setState({ addModalShow: false });
 
         return (
-            <div >
+            <div style={{width:"100%"}}>
                 <Table className="mt-4" striped bordered hover size="sm">
                     <thead>
                         <tr>

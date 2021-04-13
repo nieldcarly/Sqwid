@@ -60,6 +60,25 @@ namespace Sqwid.Controllers
             return Ok();
         }
 
+        [HttpPost("addusers/{gid}")]
+        public ActionResult AddUsersToGroup([FromRoute]int gid, [FromBody] string username)
+        {
+            //foreach (var u in usernames)
+            //{
+            //    UserGroup userGroup = new UserGroup();
+            //    userGroup.UserGroupGroupId = gid;
+            //    userGroup.UserGroupUserId = _context.Users.Where(x => x.UserUserName == u).FirstOrDefault().UserId;
+            //    _context.UserGroups.Add(userGroup);
+            //}
+            UserGroup userGroup = new UserGroup();
+            userGroup.UserGroupGroupId = gid;
+            userGroup.UserGroupUserId = _context.Users.Where(x => x.UserUserName == username).FirstOrDefault().UserId;
+            _context.UserGroups.Add(userGroup);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
         // POST api/<GroupsController>
         [HttpPost]
         public ActionResult<Group> Post(Group incomingGroup)

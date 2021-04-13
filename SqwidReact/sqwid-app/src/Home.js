@@ -34,10 +34,14 @@ export class Home extends Component {
 
         return (
             <div style={{"width":"100%"}}>
+                <div className="headerimagecontainer">
+                    <Image src="./header3.jpg" className="headerimage"></Image>
+                    <Button className="headerimagetext">Share Art with Friends</Button>
+                </div>
                 <h2 className="homeheader">Public Creations</h2>
                 <div className="carddeck" style={{"width":"100%"}}>
                     {creations.map(creation =>
-                    <Card>
+                    <Card key={creation.CreationId}>
                         <Card.Img variant="top" src={'http://localhost:52121/Photos/' + creation.CreationImagePath} />
                         <Card.Body>
                             <Card.Title>{creation.CreationTitle}</Card.Title>

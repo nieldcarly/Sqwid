@@ -3,6 +3,7 @@ import { Table } from 'react-bootstrap';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import { CreateGroupModal } from './CreateGroupModal';
 import { BrowserRouter, Link, NavLink, Route} from 'react-router-dom';
+import { AddUsersToGroupModal } from './AddUsersToGroupModal';
 
 export class Group extends Component {
 
@@ -19,7 +20,6 @@ export class Group extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({ groups: data })
-                console.log(data)
             });
     }
 
@@ -33,10 +33,11 @@ export class Group extends Component {
 
     render() {
         const { groups } = this.state;
+        let addUserGroupModalClose = () => this.setState({ addUserGroupModalShow: false });
         let addModalClose = () => this.setState({ addModalShow: false });
         return (
             <div >
-                <Table className="mt-4" striped bordered hover size="sm">
+                <Table className="mt-4 mytable" striped bordered hover size="sm">
                     <thead>
                         <tr>
                             <th>
@@ -67,8 +68,12 @@ export class Group extends Component {
                                     >
                                         View Events
                                     </Link>
+                                    <Button className="yellowbtn" style={{ marginRight: 30 }} onClick={() => this.setState({ addUserGroupModalShow: true })}>
+                                        Add Users to Group
+                                    </Button>
                                     <Button variant="danger">Leave Group</Button>
                                 </td>
+                                {console.log(group.GroupId)}
                             </tr>
                         )}
                     </tbody>
@@ -78,6 +83,7 @@ export class Group extends Component {
                         Create Group
                     </Button>
                     <CreateGroupModal show={this.state.addModalShow} onHide={addModalClose}></CreateGroupModal>
+                    <AddUsersToGroupModal show={this.state.addUserGroupModalShow} onHide={addUserGroupModalClose}></AddUsersToGroupModal>
                 </ButtonToolbar>
             </div>
         )
