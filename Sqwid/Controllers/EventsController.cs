@@ -37,12 +37,52 @@ namespace Sqwid.Controllers
             return Ok(events);
         }
 
+        [HttpGet("active/user/{id}")]
+        public ActionResult<List<Event>> GetActiveEventsByUser(int id)
+        {
+            List<UserGroup> groups = _context.UserGroups.Where(x => x.UserGroupUserId == id).ToList();
+            List<Event> allEvents = new List<Event>();
+            foreach (var g in groups)
+            {
+                List<Event> events = _context.Events.Where(x => x.EventGroupId == g.UserGroupId).Where(y => y.EventDueDate > DateTime.Now).ToList();
+                allEvents.AddRange(events);
+            }
+            return Ok(allEvents);
+        }
+
+        [HttpGet("past/user/{id}")]
+        public ActionResult<List<Event>> GetPastEventsByUser(int id)
+        {
+            List<UserGroup> groups = _context.UserGroups.Where(x => x.UserGroupUserId == id).ToList();
+            List<Event> allEvents = new List<Event>();
+            foreach (var g in groups)
+            {
+                List<Event> events = _context.Events.Where(x => x.EventGroupId == g.UserGroupId).Where(y => y.EventDueDate < DateTime.Now).ToList();
+                allEvents.AddRange(events);
+            }
+            return Ok(allEvents);
+        }
+
+        [HttpGet("user/{id}")]
+        public ActionResult<List<Event>> GetAllEventsByUser(int id)
+        {
+            List<UserGroup> groups = _context.UserGroups.Where(x => x.UserGroupUserId == id).ToList();
+            List<Event> allEvents = new List<Event>();
+            foreach (var g in groups)
+            {
+                List<Event> events = _context.Events.Where(x => x.EventGroupId == g.UserGroupId).ToList();
+                allEvents.AddRange(events);
+            }
+            return Ok(allEvents);
+        }
+
         [HttpGet("{id}")]
         public ActionResult<User> GetEventById(int id)
         {
             Event myEvent = _context.Events.Where(x => x.EventId == id).FirstOrDefault();
             return Ok(myEvent);
         }
+
 
         [HttpPost]
         public ActionResult<Event> CreateEvent(Event incomingData)

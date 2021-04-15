@@ -36,10 +36,10 @@ export class User extends Component {
         let addModalClose = () => this.setState({ addModalShow: false });
 
         return(
-            <div>
+            <div className="generalbackground">
                 <div className="carddeck" style={{width: "100%"}}>
                     {creations.map(creation =>
-                        <Card kye={creation.CreationId}>
+                        <Card key={creation.CreationId}>
                             <Card.Img variant="top" src={'http://localhost:52121/Photos/' + creation.CreationImagePath} />
                             <Card.Body>
                                 <Card.Title>{creation.CreationTitle}</Card.Title>

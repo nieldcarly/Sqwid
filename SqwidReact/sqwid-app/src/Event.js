@@ -4,7 +4,7 @@ import { Button, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { CreateEventModal } from './CreateEventModal';
     
-export class Event extends Component {
+export class GroupEvents extends Component {
     constructor(props) {
         super(props);
         this.groupId = (props.match.params.groupId);
@@ -33,7 +33,7 @@ export class Event extends Component {
         let addModalClose = () => this.setState({ addModalShow: false });
 
         return(
-            <div >
+            <div className="generalbackground">
                 <Table className="mt-4" striped bordered hover size="sm">
                     <thead>
                         <tr>

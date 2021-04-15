@@ -108,10 +108,13 @@ namespace Sqwid.Controllers
         //{
         //}
 
-        //// DELETE api/<GroupsController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE api/<GroupsController>/5
+        [HttpDelete("/groups/leavegroup/{gid}/{uid}")]
+        public void Delete(int gid, int uid)
+        {
+            var userGroup = _context.UserGroups.Where(x => x.UserGroupGroupId == gid).Where(y => y.UserGroupUserId == uid).FirstOrDefault();
+            _context.UserGroups.Remove(userGroup);
+            _context.SaveChanges();
+        }
     }
 }

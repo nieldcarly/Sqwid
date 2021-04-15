@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
 import { Button, ButtonToolbar, Image, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { AddCreationModal } from './AddCreationModal';
-import { Link } from 'react-router-dom';
+import {Create} from './Create';
 import style from './site.css';
 
 export class Home extends Component {
@@ -30,13 +28,13 @@ export class Home extends Component {
 
     render() {
         const { creations } = this.state;
-        let addModalClose = () => this.setState({ addModalShow: false });
 
         return (
-            <div style={{"width":"100%"}}>
+            <div style={{"width":"100%"}} className="homebackground">
                 <div className="headerimagecontainer">
-                    <Image src="./header3.jpg" className="headerimage"></Image>
-                    <Button className="headerimagetext">Share Art with Friends</Button>
+                    <Image src="./option3.jpg" className="headerimage"></Image>
+                    <h1 className="headerimagetext">Share Art With Friends</h1>
+                    <Button className="headerimagebutton">Create a Group</Button>
                 </div>
                 <h2 className="homeheader">Public Creations</h2>
                 <div className="carddeck" style={{"width":"100%"}}>

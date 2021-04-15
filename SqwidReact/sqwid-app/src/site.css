@@ -1,31 +1,6 @@
-.login-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.main-header {
-    color: #ff8d09;
-    font-family: Righteous;
-    font-size: 50px;
-    float: left;
-    width: 50%;
-}
-
-.user-cards {
-    padding: 20px;
-}
-
-body {
-    background-color: transparent;
-}
-
-.navstyle {
-    margin-top: 4%;
-    width: fit-content;
-    float: right;
-    z-index: 1000;
+a.bg-dark:hover, a.bg-dark:focus {
+    background-color: #F8bc24 !important;
+    text-decoration: none;
 }
 
 .bg-dark {
@@ -33,13 +8,36 @@ body {
     border-radius: 15px;
 }
 
-a.bg-dark:hover {
-    background-color: #F8bc24 !important;
-    text-decoration: none;
+/* .bg-dark:hover {
+    background-color:#ec830a !important;
+} */
+
+.btn-danger {
+    color: #fff;
+    background-color: #ff6409;
+    border-color: #ff6409;
 }
 
-a.bg-dark:focus {
-    background-color: #F8bc24 !important;
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+    color: #fff;
+    background-color: #e15300;
+    border-color: #e15300;
+}
+
+body {
+    background-color: transparent;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #40b0ae;
+    border-color: #40b0ae;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: #369392;
+    border-color: #369392;
 }
 
 .card {
@@ -56,15 +54,51 @@ a.bg-dark:focus {
     grid-template-columns: repeat(4, 1fr);
 }
 
-.homeheader {
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    color: #266867;
-    font-size: xxx-large;
-    font-variant-caps: all-petite-caps;
-    padding-bottom: 30px;
-    padding-top: 80px;
+.createaccountbtn {
+    margin-left: 15px;
+    font-size: smaller;
+    background-color: #f8bc24;
+    height: 2rem;
+}
+
+.createaccountbtn:hover, .createaccountbtn:focus, .createaccountbtn:active {
+    background-color: #da9e07;
+    border-color: #faf2df;
+}
+
+.createaccounttext {
+    color: #163b3b;
+    font-size: medium;
+    font-weight: bold;
+    padding-top: 50px;
+}
+
+.dropdown-item, .dropdown-item:hover, .dropdown-item:active, .dropdown-item-focus {
+    text-align: right;
+    font-size: larger;
+    color: white;
+}
+
+.dropdown-item:hover, .dropdown-item:active, .dropdown-item-focus {
+    background-color: #ffb259;
+}
+
+.dropdown-menu {
+    margin: 0px;
+    right: 0;
+    margin-top: 10%;
+}
+
+.dropdown-toggle::after {
+    content: unset;
+}
+
+.generalbackground {
+    background-image: url(./Images/paintsplashbg.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 60%;
 }
 
 .headerimage {
@@ -72,8 +106,16 @@ a.bg-dark:focus {
     border-style: none;
     width: 100%;
     border-radius: 2%;
-    opacity: 90%;
+    opacity: 82%;
 }
+
+.headerimagebutton {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: xx-large;
+  }
 
 .headerimagecontainer {
     position: relative;
@@ -87,31 +129,29 @@ a.bg-dark:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: xx-large;
+    font-weight: bold;
+    font-size: xxx-large;
+    width: 70%;
+}
+
+.homebackground {
+    background-image: url(./Images/background.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position-x: center;
+    background-position-y: center;
+    background-color: #f8f8f8;
   }
 
-.btn-danger {
-    color: #fff;
-    background-color: #ff6409;
-    border-color: #ff6409;
-}
-
-.btn-danger:hover, .btn-danger:focus, .btn-danger:active {
-    color: #fff;
-    background-color: #e15300;
-    border-color: #e15300;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #40b0ae;
-    border-color: #40b0ae;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:not(:disabled):not(.disabled):active {
-    color: #fff;
-    background-color: #369392;
-    border-color: #369392;
+.homeheader {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    color: #266867;
+    font-size: xxx-large;
+    font-variant-caps: all-petite-caps;
+    padding-bottom: 30px;
+    padding-top: 80px;
 }
 
 .loginfields {
@@ -135,28 +175,69 @@ a.bg-dark:focus {
     font-weight: bold;
 }
 
-.createaccounttext {
-    color: #163b3b;
-    font-size: medium;
-    font-weight: bold;
-    padding-top: 50px;
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
-.createaccountbtn {
-    margin-left: 15px;
-    font-size: smaller;
-    background-color: #f8bc24;
-    height: 2rem;
+.mytable {
+    background-color:rgb(255,255,255, .7);
+    /* box-shadow: 0 1px 30px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 2%); */
 }
 
-.yellowbtn {
-    background-color: #f8bc24;
-    border-color: #da9e07;
+.main-header {
+    color: #ff8d09;
+    font-family: Righteous;
+    font-size: 50px;
+    float: left;
+    width: 50%;
 }
 
-.yellowbtn:active, .yellowbtn:hover, .yellowbtn:target, .btn-primary:not(:disabled):not(.disabled):active {
-    background-color: #da9e07;
-    border-color: #da9e07;
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.navbar-nav .dropdown-menu {
+    left: auto;
+    right: 0;
+    margin-right: -10px !important;
+    background-color: #ff9f31;
+    opacity: 95%;
+    color: white;
+}
+
+.navicons {
+    color: white
+}
+
+.navicons:hover {
+    opacity: 80%;
+}
+
+.navstyle {
+    margin-top: 4%;
+    width: fit-content;
+    float: right;
+    z-index: 1000;
+}
+
+.sqwidusericon {
+    width: 44.11px;
+    height: 40.77px;
+    transform: rotate(-140deg) !important;
+    font-size: xx-large;
+    border: 1px solid white;
+    border-radius: 100%;
+    padding: 5%;
+    margin-left: 10%;
+}
+
+.subheadings {
+    font-variant: petite-caps;
+    color: #266867;
+    padding-top: 3%;
 }
 
 .submitbtn {
@@ -164,7 +245,16 @@ a.bg-dark:focus {
     background-color: #047472;
 }
 
-.mytable {
-    background-color:rgb(255,255,255, .7);
-    /* box-shadow: 0 1px 30px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 2%); */
+.user-cards {
+    padding: 20px;
+}
+
+.yellowbtn {
+    background-color: #f8bc24;
+    border-color: #da9e07;
+}
+
+.yellowbtn:active, .yellowbtn:hover, .yellowbtn:target, .btn-primary:not(:disabled):not(.disabled):active, .yellowbtn:focus {
+    background-color: #da9e07;
+    border-color: #faf2df;
 }

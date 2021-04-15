@@ -1,21 +1,16 @@
 import React,{Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import {Navbar, Nav} from 'react-bootstrap';
+import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import Login from './Login';
 import style from './site.css';
 import useToken from './useToken';
   
 
 function ProfileName(props) {
-    return <span>{props.userName}</span>;
+    return <span>{props.userName}'s Creations</span>;
 }
 function Guest() {
-    const { token, setToken } = useToken();
-
-  // if(!token) {
-  //   return <Login setToken={setToken} />
-  // }
-    return <NavLink className="d-inline p-2 bg-dark text-white" to="/login">Log In</NavLink>;
+    return <NavDropdown.Item href="/login">Log In</NavDropdown.Item>;
 }
 
 export class Navigation extends Component {
@@ -40,14 +35,28 @@ export class Navigation extends Component {
     }
 
     NavGreeting(props) {
-        console.log(props.user.UserFirstName)
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
         if (userId != null) {
-            return <NavLink className="d-inline p-2 bg-dark text-white" to="/user"><ProfileName userName={props.user.UserFirstName}></ProfileName></NavLink>
+            return <NavDropdown.Item href="/user"><ProfileName userName={props.user.UserFirstName}></ProfileName></NavDropdown.Item>
         }
         return <Guest></Guest>
+    }
+
+    CheckLoggedIn(props) {
+        if (sessionStorage.getItem('token') != null) {
+            if (props.buttonText == "View Groups") {
+                return <NavDropdown.Item href="/groups">{props.buttonText}</NavDropdown.Item>
+            } else if (props.buttonText=="View My Events") {
+                return <NavDropdown.Item href="/userevents">{props.buttonText}</NavDropdown.Item>
+            } else {
+                return <NavDropdown.Item href="/create">{props.buttonText}</NavDropdown.Item>
+            }
+        }
+        else {
+            return <NavDropdown.Item href="/login">{props.buttonText}</NavDropdown.Item>
+        }
     }
 
     render() {
@@ -58,13 +67,12 @@ export class Navigation extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/">
-                            Home
-                        </NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/groups">
-                            My Groups
-                        </NavLink>
-                        <this.NavGreeting user={user}></this.NavGreeting>
+                        <NavDropdown title={<span className="navicons"><span class="iconify" data-icon="ant-design:menu-outlined" data-inline="false" style={{fontSize:"xx-large"}}></span><span class="iconify sqwidusericon" data-icon="foundation-social-squidoo" data-inline="false"></span></span>} id="basic-nav-dropdown">
+                            <this.NavGreeting user={user}></this.NavGreeting>
+                            <this.CheckLoggedIn buttonText="View Groups"></this.CheckLoggedIn>
+                            <this.CheckLoggedIn buttonText="View My Events"></this.CheckLoggedIn>
+                            <this.CheckLoggedIn buttonText="Create"></this.CheckLoggedIn>
+                        </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
