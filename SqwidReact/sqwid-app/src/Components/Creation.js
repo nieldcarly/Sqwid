@@ -13,11 +13,10 @@ export class Creation extends Component {
     }
 
     getEventCreations() {
-        fetch('http://localhost:52121/api/creations/event/' + this.eventId)
+        fetch(process.env.REACT_APP_API + 'creations/event/' + this.eventId)
             .then(response => response.json())
             .then(data => {
                 this.setState({ creations: data })
-                console.log(data)
             });
     }
 
@@ -58,7 +57,7 @@ export class Creation extends Component {
                     <tbody>
                         {creations.map(creation =>
                             <tr key={creation.CreationId}>
-                                <td><Image height="100px" src={'http://localhost:52121/Photos/' + creation.CreationImagePath} /></td>
+                                <td><Image height="100px" src={REACT_APP_PHOTOPATH + creation.CreationImagePath} /></td>
                                 {/* <td>{creation.ImagePath}</td> */}
                                 <td>{creation.CreationTitle}</td>
                                 <td>{creation.CreationDescription}</td>
@@ -79,7 +78,7 @@ export class Creation extends Component {
                 </Table>
                 {creations.map(creation =>
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={'http://localhost:52121/Photos/' + creation.CreationImagePath} />
+                    <Card.Img variant="top" src={REACT_APP_PHOTOPATH + creation.CreationImagePath} />
                     <Card.Body>
                         <Card.Title>{creation.CreationTitle}</Card.Title>
                         <Card.Text>

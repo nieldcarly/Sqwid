@@ -14,7 +14,7 @@ export class UserEvents extends Component {
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch('http://localhost:52121/api/events/active/user/' + userId) //process.env.REACT_APP_API
+        fetch(process.env.REACT_APP_API + 'events/active/user/' + userId) //process.env.REACT_APP_API
             .then(response => response.json())
             .then(data => {
                 this.setState({ activeEvents: data })
@@ -25,7 +25,7 @@ export class UserEvents extends Component {
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch('http://localhost:52121/api/events/past/user/' + userId) //process.env.REACT_APP_API
+        fetch(process.env.REACT_APP_API + 'events/past/user/' + userId) //process.env.REACT_APP_API
             .then(response => response.json())
             .then(data => {
                 this.setState({ pastEvents: data })

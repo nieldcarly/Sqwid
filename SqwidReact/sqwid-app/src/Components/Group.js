@@ -17,7 +17,7 @@ export class Group extends Component {
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch('http://localhost:52121/api/users/groups/' + userId) //process.env.REACT_APP_API
+        fetch(process.env.REACT_APP_API + userId)
             .then(response => response.json())
             .then(data => {
                 this.setState({ groups: data })

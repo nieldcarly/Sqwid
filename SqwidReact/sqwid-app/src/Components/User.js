@@ -13,7 +13,7 @@ export class User extends Component {
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch('http://localhost:52121/api/creations/user/' + userId)
+        fetch(process.env.REACT_APP_API + 'creations/user/' + userId)
         .then(response=>response.json())
         .then(data=>{
             this.setState({creations:data})
@@ -38,7 +38,7 @@ export class User extends Component {
                 <div className="carddeck" style={{width: "100%"}}>
                     {creations.map(creation =>
                         <Card key={creation.CreationId}>
-                            <Card.Img variant="top" src={'http://localhost:52121/Photos/' + creation.CreationImagePath} />
+                            <Card.Img variant="top" src={REACT_APP_PHOTOPATH + creation.CreationImagePath} />
                             <Card.Body>
                                 <Card.Title>{creation.CreationTitle}</Card.Title>
                                 <Card.Text>

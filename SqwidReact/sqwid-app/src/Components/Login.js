@@ -5,7 +5,7 @@ import '../site.css';
 import { CreateAccountModal } from './CreateAccountModal';
 
 async function loginUser(credentials) {
-    return fetch('http://localhost:52121/api/users/login', {
+    return fetch(process.env.REACT_APP_API + 'users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

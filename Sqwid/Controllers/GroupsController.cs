@@ -63,13 +63,6 @@ namespace Sqwid.Controllers
         [HttpPost("addusers/{gid}")]
         public ActionResult AddUsersToGroup([FromRoute]int gid, [FromBody] string username)
         {
-            //foreach (var u in usernames)
-            //{
-            //    UserGroup userGroup = new UserGroup();
-            //    userGroup.UserGroupGroupId = gid;
-            //    userGroup.UserGroupUserId = _context.Users.Where(x => x.UserUserName == u).FirstOrDefault().UserId;
-            //    _context.UserGroups.Add(userGroup);
-            //}
             UserGroup userGroup = new UserGroup();
             userGroup.UserGroupGroupId = gid;
             userGroup.UserGroupUserId = _context.Users.Where(x => x.UserUserName == username).FirstOrDefault().UserId;
@@ -86,7 +79,6 @@ namespace Sqwid.Controllers
             Group newGroup = new Group();
             if (ModelState.IsValid)
             {
-                //var name = HttpContext.Session.GetString("username");
                 newGroup.GroupAdminId = incomingGroup.GroupAdminId;
                 newGroup.GroupDescription = incomingGroup.GroupDescription;
                 newGroup.GroupName = incomingGroup.GroupName;
@@ -101,12 +93,6 @@ namespace Sqwid.Controllers
 
             return BadRequest();
         }
-
-        //// PUT api/<GroupsController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
 
         // DELETE api/<GroupsController>/5
         [HttpDelete("/groups/leavegroup/{gid}/{uid}")]

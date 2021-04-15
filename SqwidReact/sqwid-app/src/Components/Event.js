@@ -12,11 +12,10 @@ export class GroupEvents extends Component {
     }
 
     getGroupEvents() {
-        fetch('http://localhost:52121/api/events/groups/' + this.groupId)
+        fetch(process.env.REACT_APP_API + 'events/groups/' + this.groupId)
         .then(response=>response.json())
         .then(data=>{
             this.setState({events:data})
-            console.log(data)
         });
     }
 

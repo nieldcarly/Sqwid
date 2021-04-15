@@ -9,7 +9,7 @@ export class CreateAccountModal extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        fetch('http://localhost:52121/api/users',{
+        fetch(process.env.REACT_APP_API + 'users',{
             method:'POST',
             headers:{
                 'Accept':'application/json',

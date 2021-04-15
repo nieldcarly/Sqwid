@@ -13,7 +13,7 @@ export class CreateEventModal extends Component{
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch('http://localhost:52121/api/events/',{
+        fetch(process.env.REACT_APP_API + 'events/',{
             method:'POST',
             headers:{
                 'Accept':'application/json',

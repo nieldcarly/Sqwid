@@ -14,4 +14,4 @@ You'll need to add a .env file to your React project containing links to the API
 REACT_APP_API=http://localhost:52121/api/
 REACT_APP_PHOTOPATH=http://localhost:52121/Photos
 ```
-You will also need to run `npm install` to pull in the necessary packages. Also, you'll need to run `npm install react-sketch --save`. This will pull in the canvas tool for which you can find the source code [here]('https://github.com/tbolis/react-sketch').
+You will also need to run `npm install` to pull in the necessary packages. Also, you'll need to run `npm install react-sketch --save`. This will pull in the canvas tool for which you can find the source code [here](https://github.com/tbolis/react-sketch).

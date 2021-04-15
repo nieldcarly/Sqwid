@@ -20,7 +20,7 @@ export class Navigation extends Component {
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch('http://localhost:52121/api/users/' + userId)
+        fetch(process.env.REACT_APP_API + 'users/' + userId)
         .then(response=>response.json())
         .then(data=>{
             this.setState({user:data})

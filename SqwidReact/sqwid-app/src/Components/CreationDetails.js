@@ -10,11 +10,10 @@ export class CreationDetails extends Component {
     }
 
     getCreation() {
-        fetch('http://localhost:52121/api/creations/' + this.creationId)
+        fetch(process.env.REACT_APP_API + 'creations/' + this.creationId)
         .then(response=>response.json())
         .then(data=>{
             this.setState({creation:data})
-            console.log(data)
         });
     }
 
@@ -31,7 +30,7 @@ export class CreationDetails extends Component {
 
         return(
             <div className="creationdetails">
-                <Image height="100px" src={'http://localhost:52121/Photos/' + creation.CreationImagePath} className="creationdetailsimage"/>
+                <Image height="100px" src={REACT_APP_PHOTOPATH + creation.CreationImagePath} className="creationdetailsimage"/>
                 <h2 className="creationsubheading">{creation.CreationTitle}</h2>
                 <h3 className="creationdetailsname">{creation.CreationCreatorFirstName + ' ' + creation.CreationCreatorLastName}</h3>
                 <h4 className="creationdetailsdescription">{creation.CreationDescription}</h4>

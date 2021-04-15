@@ -4,8 +4,6 @@ import {Modal,Button, Row, Col, Form} from 'react-bootstrap';
 export class LeaveGroupModal extends Component{
     constructor(props){
         super(props);
-        console.log('hello world')
-        console.log(props);
         this.groupId = props.groupId;
         this.state = { userName: '' };
         this.handleSubmit=this.handleSubmit.bind(this);
@@ -21,7 +19,7 @@ export class LeaveGroupModal extends Component{
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch('http://localhost:52121/api/groups/leavegroup/' + this.groupId +'/' + userId,{
+        fetch(process.env.REACT_APP_API + 'groups/leavegroup/' + this.groupId +'/' + userId,{
             method:'DELETE',
             headers:{
                 'Accept':'application/json',

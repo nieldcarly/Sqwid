@@ -10,10 +10,10 @@ export class AddCreationModal extends Component{
     }
 
     photoFileName = "anonymous.png";
-    imageSource = 'http://localhost:52121/Photos/' + this.photoFileName;
+    imageSource = REACT_APP_PHOTOPATH + this.photoFileName;
 
     componentDidMount(){
-        fetch('http://localhost:52121/api/creations')
+        fetch(process.env.REACT_APP_API + 'creations')
         .then(response=>response.json())
         .then(data=>{
             this.setState({deps:data});
@@ -25,7 +25,7 @@ export class AddCreationModal extends Component{
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch('http://localhost:52121/api/creations/',{
+        fetch(process.env.REACT_APP_API + 'creations/',{
             method:'POST',
             headers:{
                 'Accept':'application/json',
@@ -66,13 +66,13 @@ export class AddCreationModal extends Component{
             event.target.files[0].name
         );
 
-        fetch('http://localhost:52121/api/creations/savefile',{
+        fetch(process.env.REACT_APP_API + 'creations/savefile',{
             method:'POST',
             body:formData
         })
         .then(res=>res.json())
         .then((result)=>{
-            this.imageSource = 'http://localhost:52121/Photos/'+result;
+            this.imageSource = REACT_APP_PHOTOPATH+result;
         },
         (error)=>{
             alert('Failed');

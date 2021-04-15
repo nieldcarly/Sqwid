@@ -4,7 +4,6 @@ import {Modal,Button, Row, Col, Form} from 'react-bootstrap';
 export class AddUsersToGroupModal extends Component{
     constructor(props){
         super(props);
-        console.log(props);
         // this.groupId = props.groupId;
         this.state = { userName: '' };
         this.handleSubmit=this.handleSubmit.bind(this);
@@ -17,7 +16,7 @@ export class AddUsersToGroupModal extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        fetch('http://localhost:52121/api/groups/addusers/5',{
+        fetch(process.env.REACT_APP_API + 'groups/addusers/5',{
             method:'POST',
             headers:{
                 'Accept':'application/json',
