@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import './App.css';
 
-import { Home } from './Home';
-import { Group } from './Group';
-import { User } from './User';
-import { Navigation } from './Navigation';
-import {GroupEvents} from './Event';
-import {Creation} from './Creation';
-import { CreationDetails } from './CreationDetails.js';
+import { Home } from './Components/Home';
+import { Group } from './Components/Group';
+import { User } from './Components/User';
+import { Navigation } from './Components/Navigation';
+import {GroupEvents} from './Components/Event';
+import {Creation} from './Components/Creation';
+import { CreationDetails } from './Components/CreationDetails.js';
 import {Image} from 'react-bootstrap';
-import Login from './Login';
-import Create from './Create';
+import Login from './Components/Login';
+import {Create} from './Components/Create';
 import style from './site.css';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { UserEvents } from './UserEvents';
+import { UserEvents } from './Components/UserEvents';
 
 function App() {
   // const { token, setToken } = useToken();
@@ -28,7 +28,7 @@ function App() {
       <div className="container">
         <a href="/">
           <h1 className="main-header m-3 d-flex">
-              <span><Image height="100px" src={"./Sqwig.svg"}></Image></span>
+              <span><Image height="100px" src={"../Sqwig.svg"}></Image></span>
               <span style={{"paddingLeft":10, "paddingTop":20}}>Sqwid</span>
           </h1>
         </a>

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { Button, ButtonToolbar, Image, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-import style from './site.css';
+import style from '../site.css';
     
 export class User extends Component {
     constructor(props) {
@@ -27,9 +25,9 @@ export class User extends Component {
         this.getEventCreations();
     }
 
-    // componentDidUpdate() {
-    //     this.getEventCreations();
-    // }
+    componentDidUpdate() {
+        this.getEventCreations();
+    }
 
     render() {
         const {creations}=this.state;

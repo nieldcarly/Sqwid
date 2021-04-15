@@ -73,6 +73,38 @@ body {
     padding-top: 50px;
 }
 
+.creationdetails {
+    width: 100%;
+    display: flow-root;
+    text-align: center;
+}
+
+.creationdetailsimage {
+    margin-top: 5%;
+    width: 50%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 40%), 0 6px 20px 0 rgb(0 0 0 / 5%);
+}
+
+.creationsubheading {
+    font-style: italic;
+    font-size: xxx-large;
+    font-variant: all-small-caps;
+    padding-top: 4%;
+    color: #266867;
+}
+
+.creationdetailsname {
+    font-size: x-large;
+    color: #343a408c;
+    font-weight: bold;
+}
+
+.creationdetailsdescription {
+    padding-top: 2%;
+    color: #000000ba;
+}
+
 .dropdown-item, .dropdown-item:hover, .dropdown-item:active, .dropdown-item-focus {
     text-align: right;
     font-size: larger;
@@ -99,6 +131,7 @@ body {
     background-position-x: center;
     background-position-y: center;
     background-size: 60%;
+    min-height: 700px;
 }
 
 .headerimage {

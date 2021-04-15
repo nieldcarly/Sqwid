@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import { Button, ButtonToolbar } from 'react-bootstrap';
-import { CreateGroupModal } from './CreateGroupModal';
 import { BrowserRouter, Link, NavLink, Route} from 'react-router-dom';
-import { AddUsersToGroupModal } from './AddUsersToGroupModal';
 
 export class UserEvents extends Component {
 
@@ -90,7 +88,6 @@ export class UserEvents extends Component {
                                     >
                                         View Creations
                                     </Link>
-                                    <Button variant="danger">End Event</Button>
                                 </td>
                             </tr>
                         )}
@@ -137,7 +134,6 @@ export class UserEvents extends Component {
                                     >
                                         View Creations
                                     </Link>
-                                    <Button variant="danger">End Event</Button>
                                 </td>
                             </tr>
                         )}

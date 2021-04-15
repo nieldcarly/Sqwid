@@ -1,9 +1,6 @@
 import React,{Component} from 'react';
-import {NavLink} from 'react-router-dom';
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
-import Login from './Login';
-import style from './site.css';
-import useToken from './useToken';
+import style from '../site.css';
   
 
 function ProfileName(props) {

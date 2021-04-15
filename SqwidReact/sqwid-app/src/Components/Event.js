@@ -77,7 +77,6 @@ export class GroupEvents extends Component {
                                     >
                                         View Creations
                                     </Link>
-                                    <Button variant="danger">End Event</Button>
                                 </td>
                             </tr>
                             )}

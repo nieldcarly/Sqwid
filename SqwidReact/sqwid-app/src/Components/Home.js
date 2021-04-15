@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, ButtonToolbar, Image, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
-import {Create} from './Create';
-import style from './site.css';
+import style from '../site.css';
 
 export class Home extends Component {
     constructor(props) {
@@ -34,7 +33,7 @@ export class Home extends Component {
                 <div className="headerimagecontainer">
                     <Image src="./option3.jpg" className="headerimage"></Image>
                     <h1 className="headerimagetext">Share Art With Friends</h1>
-                    <Button className="headerimagebutton">Create a Group</Button>
+                    <Button className="headerimagebutton" href="/group">Create a Group</Button>
                 </div>
                 <h2 className="homeheader">Public Creations</h2>
                 <div className="carddeck" style={{"width":"100%"}}>

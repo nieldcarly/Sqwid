@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {Button, ButtonToolbar} from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import './site.css';
+import '../site.css';
 import { CreateAccountModal } from './CreateAccountModal';
 
 async function loginUser(credentials) {

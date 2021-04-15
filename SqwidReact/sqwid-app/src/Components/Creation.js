@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 import { Button, ButtonToolbar, Image, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { AddCreationModal } from './AddCreationModal';
 import { Link } from 'react-router-dom';
-import style from './site.css';
+import style from '../site.css';
 
 export class Creation extends Component {
     constructor(props) {

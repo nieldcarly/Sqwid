@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
 import { Button, ButtonToolbar, Image } from 'react-bootstrap';
-import { AddCreationModal } from './AddCreationModal';
 import { BrowserRouter, Link, NavLink, Route} from 'react-router-dom';
     
 export class CreationDetails extends Component {
@@ -30,15 +28,14 @@ export class CreationDetails extends Component {
 
     render() {
         const {creation}=this.state;
-        let addModalClose = () => this.setState({ addModalShow: false });
 
         return(
-            <div >
-                <Image height="100px" src={'http://localhost:52121/Photos/' + creation.CreationImagePath}/>
-                <span>{creation.CreationTitle}</span>
-                <p>{creation.CreationDescription}</p>
-                <p>{creation.CreatorId}</p>
-                <Link to="/groups" className="btn btn-primary" style={{marginTop: 20}}>Return to Events</Link>
+            <div className="creationdetails">
+                <Image height="100px" src={'http://localhost:52121/Photos/' + creation.CreationImagePath} className="creationdetailsimage"/>
+                <h2 className="creationsubheading">{creation.CreationTitle}</h2>
+                <h3 className="creationdetailsname">{creation.CreationCreatorFirstName + ' ' + creation.CreationCreatorLastName}</h3>
+                <h4 className="creationdetailsdescription">{creation.CreationDescription}</h4>
+                <Link to="/groups" className="btn btn-primary" style={{marginTop: 20, marginBottom:50}}>Return to Events</Link>
             </div>
         )
     }
