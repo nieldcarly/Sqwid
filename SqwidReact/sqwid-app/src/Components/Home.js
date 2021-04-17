@@ -31,7 +31,7 @@ export class Home extends Component {
         return (
             <div style={{"width":"100%"}} className="homebackground">
                 <div className="headerimagecontainer">
-                    <Image src="./option3.jpg" className="headerimage"></Image>
+                    <Image src="/option3.jpg" className="headerimage"></Image>
                     <h1 className="headerimagetext">Share Art With Friends</h1>
                     <Button className="headerimagebutton" href="/group">Create a Group</Button>
                 </div>
@@ -39,7 +39,7 @@ export class Home extends Component {
                 <div className="carddeck" style={{"width":"100%"}}>
                     {creations.map(creation =>
                     <Card key={creation.CreationId}>
-                        <Card.Img variant="top" src={REACT_APP_PHOTOPATH + creation.CreationImagePath} />
+                        <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} />
                         <Card.Body>
                             <Card.Title>{creation.CreationTitle}</Card.Title>
                             <Card.Text>

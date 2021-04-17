@@ -57,7 +57,7 @@ export class Creation extends Component {
                     <tbody>
                         {creations.map(creation =>
                             <tr key={creation.CreationId}>
-                                <td><Image height="100px" src={REACT_APP_PHOTOPATH + creation.CreationImagePath} /></td>
+                                <td><Image height="100px" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} /></td>
                                 {/* <td>{creation.ImagePath}</td> */}
                                 <td>{creation.CreationTitle}</td>
                                 <td>{creation.CreationDescription}</td>
@@ -78,7 +78,7 @@ export class Creation extends Component {
                 </Table>
                 {creations.map(creation =>
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={REACT_APP_PHOTOPATH + creation.CreationImagePath} />
+                    <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} />
                     <Card.Body>
                         <Card.Title>{creation.CreationTitle}</Card.Title>
                         <Card.Text>

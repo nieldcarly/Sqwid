@@ -10,7 +10,7 @@ export class AddCreationModal extends Component{
     }
 
     photoFileName = "anonymous.png";
-    imageSource = REACT_APP_PHOTOPATH + this.photoFileName;
+    imageSource = process.env.REACT_APP_PHOTOPATH + this.photoFileName;
 
     componentDidMount(){
         fetch(process.env.REACT_APP_API + 'creations')
@@ -72,7 +72,7 @@ export class AddCreationModal extends Component{
         })
         .then(res=>res.json())
         .then((result)=>{
-            this.imageSource = REACT_APP_PHOTOPATH+result;
+            this.imageSource = process.env.REACT_APP_PHOTOPATH+result;
         },
         (error)=>{
             alert('Failed');

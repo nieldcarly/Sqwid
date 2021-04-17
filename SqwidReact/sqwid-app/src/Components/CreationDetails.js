@@ -30,7 +30,7 @@ export class CreationDetails extends Component {
 
         return(
             <div className="creationdetails">
-                <Image height="100px" src={REACT_APP_PHOTOPATH + creation.CreationImagePath} className="creationdetailsimage"/>
+                <Image height="100px" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} className="creationdetailsimage"/>
                 <h2 className="creationsubheading">{creation.CreationTitle}</h2>
                 <h3 className="creationdetailsname">{creation.CreationCreatorFirstName + ' ' + creation.CreationCreatorLastName}</h3>
                 <h4 className="creationdetailsdescription">{creation.CreationDescription}</h4>

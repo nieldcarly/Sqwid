@@ -38,7 +38,7 @@ export class User extends Component {
                 <div className="carddeck" style={{width: "100%"}}>
                     {creations.map(creation =>
                         <Card key={creation.CreationId}>
-                            <Card.Img variant="top" src={REACT_APP_PHOTOPATH + creation.CreationImagePath} />
+                            <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} />
                             <Card.Body>
                                 <Card.Title>{creation.CreationTitle}</Card.Title>
                                 <Card.Text>
