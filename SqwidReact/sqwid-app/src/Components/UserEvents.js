@@ -46,7 +46,7 @@ export class UserEvents extends Component {
         const { pastEvents } = this.state;
 
         return (
-            <div >
+            <div className="fade-in">
                 <h2 style={{width:"100%", display:"flex"}} className="subheadings">Active Events</h2>
                 <Table className="mt-4 mytable" striped bordered hover size="sm">
                     <thead>
@@ -84,7 +84,6 @@ export class UserEvents extends Component {
                                     <Link to={`/creations/${event.EventId}`}
                                         style={{ marginRight: 30 }}
                                         className="btn btn-primary"
-                                        activeclassName="is-active"
                                     >
                                         View Creations
                                     </Link>
@@ -130,7 +129,6 @@ export class UserEvents extends Component {
                                     <Link to={`/creations/${event.EventId}`}
                                         style={{ marginRight: 30 }}
                                         className="btn btn-primary"
-                                        activeclassName="is-active"
                                     >
                                         View Creations
                                     </Link>

@@ -318,7 +318,7 @@ export class Create extends Component {
       },
     });
     return (
-        <div>
+        <div className="fade-in">
             <div style={{width:"100%"}}>
             </div>
             <MuiThemeProvider theme={theme}>

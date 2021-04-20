@@ -72,7 +72,6 @@ export class GroupEvents extends Component {
                                     <Link to={`/creations/${event.EventId}`}
                                         style={{ marginRight: 30 }}
                                         className="btn btn-primary"
-                                        activeclassName="is-active"
                                     >
                                         View Creations
                                     </Link>

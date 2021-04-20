@@ -9,6 +9,7 @@ import {Creation} from './Components/Creation';
 import { CreationDetails } from './Components/CreationDetails.js';
 import {Image} from 'react-bootstrap';
 import Login from './Components/Login';
+import Logout from './Components/Logout';
 import {Create} from './Components/Create';
 import style from './site.css';
 
@@ -27,8 +28,8 @@ function App() {
       <div className="container">
         <a href="/">
           <h1 className="main-header m-3 d-flex">
-              <span><Image height="100px" src={"../Sqwig.svg"}></Image></span>
-              <span style={{"paddingLeft":10, "paddingTop":20}}>Sqwid</span>
+              <span><Image src={"../Sqwig.svg"} className="main-header-image"></Image></span>
+              <span className="main-header-text">Sqwid</span>
           </h1>
         </a>
 
@@ -45,6 +46,7 @@ function App() {
           <Route path="/login" exact component={Login}></Route>
           <Route path="/create" exact component={Create}></Route>
           <Route path="/userevents" exact component={UserEvents}></Route>
+          <Route path="/logout" exact component={Logout}></Route>
         </Switch>
       </div>
     </BrowserRouter>    

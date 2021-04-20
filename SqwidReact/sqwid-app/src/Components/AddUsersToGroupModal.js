@@ -1,22 +1,40 @@
 import React,{Component} from 'react';
-import {Modal,Button, Row, Col, Form} from 'react-bootstrap';
+import {Modal,Button, Row, Col, Form, Table} from 'react-bootstrap';
 
 export class AddUsersToGroupModal extends Component{
     constructor(props){
         super(props);
-        // this.groupId = props.groupId;
-        this.state = { userName: '' };
+        this.groupId = props.groupid;
+        this.state = { users: [], usersuserName: '', groupId: props.groupid };
         this.handleSubmit=this.handleSubmit.bind(this);
         this.addUser = this.addUser.bind(this);
     }
 
+    getUsers() {
+        fetch(process.env.REACT_APP_API +'groups/users/' + this.state.groupId)
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ users: data })
+            });
+    }
+
+    componentDidMount() {
+        this.getUsers();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ groupId: nextProps.groupid });
+        this.getUsers();
+      }
+
     addUser (e) {
         this.setState({userName: e.target.value});
+        this.getUsers();
     }
 
     handleSubmit(event){
         event.preventDefault();
-        fetch(process.env.REACT_APP_API + 'groups/addusers/5',{
+        fetch(process.env.REACT_APP_API + 'groups/addusers/' + this.state.groupId,{
             method:'POST',
             headers:{
                 'Accept':'application/json',
@@ -30,12 +48,12 @@ export class AddUsersToGroupModal extends Component{
         },
         (error)=>{
             alert('User added!');
+            this.getUsers();
         })
     }
     render(){
         return (
             <div className="container">
-
                 <Modal
                 {...this.props}
                 size="lg"
@@ -44,15 +62,33 @@ export class AddUsersToGroupModal extends Component{
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Add Users
+                            View/Add Users
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
                             <Col sm={6}>
+                                <Table className="mt-4 mytable" striped bordered hover size="sm">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Members
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.state.users.map(user =>
+                                            <tr key={'user'+user.UserId.toString()}>
+                                                <td>{user.UserFirstName + ' ' + user.UserLastName}</td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </Table>
+                            </Col>
+                            <Col sm={6}>
                                 <Form onSubmit={this.handleSubmit}>
                                     <Form.Group controlId="GroupAdminId">
-                                        <Form.Label>UserName</Form.Label>
+                                        <Form.Label>Username</Form.Label>
                                         <Form.Control type="text" name="UserName" onChange={this.addUser}
                                         placeholder="Username"/>
                                     </Form.Group>
@@ -72,7 +108,6 @@ export class AddUsersToGroupModal extends Component{
                     </Modal.Footer>
 
                 </Modal>
-
             </div>
         )
     }

@@ -47,12 +47,18 @@ export class Navigation extends Component {
                 return <NavDropdown.Item href="/groups">{props.buttonText}</NavDropdown.Item>
             } else if (props.buttonText=="View My Events") {
                 return <NavDropdown.Item href="/userevents">{props.buttonText}</NavDropdown.Item>
-            } else {
+            } else if (props.buttonText=="Create") {
                 return <NavDropdown.Item href="/create">{props.buttonText}</NavDropdown.Item>
+            } else {
+                return <NavDropdown.Item href="/logout">{props.buttonText}</NavDropdown.Item>
             }
         }
         else {
-            return <NavDropdown.Item href="/login">{props.buttonText}</NavDropdown.Item>
+            if (props.buttonText != "Log Out") {
+                return <NavDropdown.Item href="/login">{props.buttonText}</NavDropdown.Item>
+            } else {
+                return null
+            }
         }
     }
 
@@ -61,17 +67,19 @@ export class Navigation extends Component {
 
         return(
             <Navbar bg="dark" expand="lg" className="navstyle">
-                <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav>
-                        <NavDropdown title={<span className="navicons"><span class="iconify" data-icon="ant-design:menu-outlined" data-inline="false" style={{fontSize:"xx-large"}}></span><span class="iconify sqwidusericon" data-icon="foundation-social-squidoo" data-inline="false"></span></span>} id="basic-nav-dropdown">
-                            <this.NavGreeting user={user}></this.NavGreeting>
-                            <this.CheckLoggedIn buttonText="View Groups"></this.CheckLoggedIn>
-                            <this.CheckLoggedIn buttonText="View My Events"></this.CheckLoggedIn>
-                            <this.CheckLoggedIn buttonText="Create"></this.CheckLoggedIn>
-                        </NavDropdown>
-                    </Nav>
-                </Navbar.Collapse>
+                <Nav>
+                    <NavDropdown title={
+                    <span className="navicons">
+                        <span className="iconify menuicon" data-icon="ant-design:menu-outlined" data-inline="false"></span>
+                        <span className="iconify sqwidusericon" data-icon="foundation-social-squidoo" data-inline="false"></span>
+                    </span>} id="basic-nav-dropdown">
+                        <this.NavGreeting user={user}></this.NavGreeting>
+                        <this.CheckLoggedIn buttonText="View Groups"></this.CheckLoggedIn>
+                        <this.CheckLoggedIn buttonText="View My Events"></this.CheckLoggedIn>
+                        <this.CheckLoggedIn buttonText="Create"></this.CheckLoggedIn>
+                        <this.CheckLoggedIn buttonText="Log Out"></this.CheckLoggedIn>
+                    </NavDropdown>
+                </Nav>
             </Navbar>
         )
     }

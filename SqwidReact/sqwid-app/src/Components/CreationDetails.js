@@ -34,7 +34,7 @@ export class CreationDetails extends Component {
                 <h2 className="creationsubheading">{creation.CreationTitle}</h2>
                 <h3 className="creationdetailsname">{creation.CreationCreatorFirstName + ' ' + creation.CreationCreatorLastName}</h3>
                 <h4 className="creationdetailsdescription">{creation.CreationDescription}</h4>
-                <Link to="/groups" className="btn btn-primary" style={{marginTop: 20, marginBottom:50}}>Return to Events</Link>
+                <Link to="/userevents" className="btn btn-primary" style={{marginTop: 20, marginBottom:50}}>Return to Events</Link>
             </div>
         )
     }

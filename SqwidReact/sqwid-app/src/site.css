@@ -1,3 +1,7 @@
+/*  */
+/* DESKTOP WIDTH */
+/*  */
+
 a.bg-dark:hover, a.bg-dark:focus {
     background-color: #F8bc24 !important;
     text-decoration: none;
@@ -124,6 +128,35 @@ body {
 .dropdown-toggle::after {
     content: unset;
 }
+  
+.fade-in {
+    animation: fadeIn;
+    animation-duration: 2s;
+}
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  /* @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  } */
 
 .generalbackground {
     background-image: url(./Images/paintsplashbg.png);
@@ -132,6 +165,8 @@ body {
     background-position-y: center;
     background-size: 60%;
     min-height: 700px;
+    animation: fadeIn;
+    animation-duration: 2s;
 }
 
 .headerimage {
@@ -146,6 +181,7 @@ body {
     position: absolute;
     top: 65%;
     left: 50%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 5%);
     transform: translate(-50%, -50%);
     font-size: xx-large;
   }
@@ -155,6 +191,8 @@ body {
     text-align: center;
     color: white;
     z-index: 0;
+    animation-name: header-image-fly-in;
+    animation-duration: 5s;
 }
 
 .headerimagetext {
@@ -167,6 +205,12 @@ body {
     width: 70%;
 }
 
+@keyframes header-image-fly-in {
+    0% { transform: translateY(-1800px); z-index: 20;}
+    40% {transform: translateY(0px);}
+    100% {z-index: 0;}
+  }
+
 .homebackground {
     background-image: url(./Images/background.png);
     background-repeat: no-repeat;
@@ -174,6 +218,11 @@ body {
     background-position-x: center;
     background-position-y: center;
     background-color: #f8f8f8;
+  }
+
+  .homecarddeck {
+    animation-name: fly-in;
+    animation-duration: 6s;
   }
 
 .homeheader {
@@ -185,6 +234,11 @@ body {
     font-variant-caps: all-petite-caps;
     padding-bottom: 30px;
     padding-top: 80px;
+}
+
+.homeheader-animation {
+    animation-name: fly-in;
+    animation-duration: 6s;
 }
 
 .loginfields {
@@ -215,17 +269,43 @@ body {
     width: 100%;
 }
 
-.mytable {
-    background-color:rgb(255,255,255, .7);
-    /* box-shadow: 0 1px 30px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 2%); */
-}
-
 .main-header {
     color: #ff8d09;
     font-family: Righteous;
     font-size: 50px;
     float: left;
     width: 50%;
+}
+
+@keyframes main-header-animation {
+    0%   {color:#ff8d09; transform: translateY(-1000px);}
+    40%  {color:#f8bc24; transform: translateY(0px);}
+    50%  {color:#40b0ae;}
+    75%  {color: #f58800;}
+    100% {color:#ff8d09;}
+  }
+
+  @keyframes fly-in {
+    0% { transform: translateY(-1800px);}
+    40% {transform: translateY(0px);}
+  }
+
+.main-header-image {
+    height: 100px;
+}
+
+.main-header-text{
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
+.menuicon {
+    font-size:"xx-large";
+}
+
+.mytable {
+    background-color:rgb(255,255,255, .7);
+    /* box-shadow: 0 1px 30px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 2%); */
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
@@ -253,7 +333,12 @@ body {
     margin-top: 4%;
     width: fit-content;
     float: right;
-    z-index: 1000;
+    z-index: 5;
+}
+
+.navstyle-home {
+    animation-name: fly-in;
+    animation-duration: 8s;
 }
 
 .sqwidusericon {
@@ -290,4 +375,65 @@ body {
 .yellowbtn:active, .yellowbtn:hover, .yellowbtn:target, .btn-primary:not(:disabled):not(.disabled):active, .yellowbtn:focus {
     background-color: #da9e07;
     border-color: #faf2df;
+}
+
+/*  */
+/* iPAD WIDTH */
+/*  */
+
+@media only screen and (max-width: 1200px) {
+    .card {
+        margin-left: auto;
+        margin-right: auto;
+        width: 18rem;
+    }
+    .carddeck {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .headerimagebutton {
+        top: 75%;
+    }
+  }
+
+/*  */
+/* PHONE WIDTH */
+/*  */
+@media only screen and (max-width: 550px) {
+    .card {
+        width: 15rem;
+    }
+    .carddeck {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .headerimage {
+        height: 250px;
+    }
+    .headerimagebutton {
+        top: 80%;
+        font-size: x-large;
+    }
+    .headerimagetext {
+        font-size: xx-large;
+    }
+    .homeheader {
+        padding-top: 30px;
+    }
+    .main-header {
+        font-size: 30px;
+    }
+    .main-header-image {
+        height: 50px;
+    }
+    .main-header-text {
+        padding-left: unset;
+        padding-top: unset;
+        padding-top: 8%;
+    }
+    .menuicon {
+        font-size: large;
+    }
+    .sqwidusericon {
+        height: unset;
+        width: unset;
+    }
 }

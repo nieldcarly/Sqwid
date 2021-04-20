@@ -35,8 +35,8 @@ export class Home extends Component {
                     <h1 className="headerimagetext">Share Art With Friends</h1>
                     <Button className="headerimagebutton" href="/group">Create a Group</Button>
                 </div>
-                <h2 className="homeheader">Public Creations</h2>
-                <div className="carddeck" style={{"width":"100%"}}>
+                <h2 className="homeheader homeheader-animation">Public Creations</h2>
+                <div className="carddeck homecarddeck" style={{"width":"100%"}}>
                     {creations.map(creation =>
                     <Card key={creation.CreationId}>
                         <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} />

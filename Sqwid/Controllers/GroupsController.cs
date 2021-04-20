@@ -40,7 +40,6 @@ namespace Sqwid.Controllers
             return Ok(group);
         }
 
-        // idk if this one works
         [HttpGet("users/{id}")]
         public ActionResult<List<User>> GetUsersForGroup(int id)
         {
@@ -54,9 +53,11 @@ namespace Sqwid.Controllers
             UserGroup userGroup = new UserGroup();
             userGroup.UserGroupGroupId = gid;
             userGroup.UserGroupUserId = uid;
-            _context.UserGroups.Add(userGroup);
-            _context.SaveChanges();
-
+            if (!_context.UserGroups.Where(x => x.UserGroupGroupId == gid).Where(y => y.UserGroupUserId == uid).Any())
+            {
+                _context.UserGroups.Add(userGroup);
+                _context.SaveChanges();
+            }
             return Ok();
         }
 
@@ -95,7 +96,7 @@ namespace Sqwid.Controllers
         }
 
         // DELETE api/<GroupsController>/5
-        [HttpDelete("/groups/leavegroup/{gid}/{uid}")]
+        [HttpDelete("leavegroup/{gid}/{uid}")]
         public void Delete(int gid, int uid)
         {
             var userGroup = _context.UserGroups.Where(x => x.UserGroupGroupId == gid).Where(y => y.UserGroupUserId == uid).FirstOrDefault();

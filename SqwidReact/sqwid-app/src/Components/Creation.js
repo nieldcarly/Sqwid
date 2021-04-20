@@ -33,49 +33,7 @@ export class Creation extends Component {
         let addModalClose = () => this.setState({ addModalShow: false });
 
         return (
-            <div style={{width:"100%"}}>
-                <Table className="mt-4" striped bordered hover size="sm">
-                    <thead>
-                        <tr>
-                            <th>
-                                Preview
-                            </th>
-                            <th>
-                                Title
-                            </th>
-                            <th>
-                                Description
-                            </th>
-                            <th>
-                                Creator
-                            </th>
-                            <th>
-                                Options
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {creations.map(creation =>
-                            <tr key={creation.CreationId}>
-                                <td><Image height="100px" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} /></td>
-                                {/* <td>{creation.ImagePath}</td> */}
-                                <td>{creation.CreationTitle}</td>
-                                <td>{creation.CreationDescription}</td>
-                                <td>{creation.CreationCreatorFirstName + ' ' + creation.CreationCreatorLastName}</td>
-                                <td style={{ textAlign: 'center' }}>
-                                    <Link to={`/creations/${creation.CreationId}`}
-                                        style={{ marginRight: 30 }}
-                                        className="btn btn-primary"
-                                        activeclassName="is-active"
-                                    >
-                                        View Creation
-                                    </Link>
-                                    <Button variant="danger">Delete Creation</Button>
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </Table>
+            <div style={{width:"100%", display:"flow-root"}}>
                 {creations.map(creation =>
                 <Card style={{ width: '18rem' }}>
                     <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} />
@@ -100,7 +58,7 @@ export class Creation extends Component {
                     </Button>
                     <AddCreationModal show={this.state.addModalShow} onHide={addModalClose} eventId={this.eventId}></AddCreationModal>
                 </ButtonToolbar>
-                <Link to="/groups" className="btn btn-primary" style={{ marginTop: 20 }}>Return to Events</Link>
+                <Link to="/userevents" className="btn btn-primary" style={{ marginTop: 20 }}>Return to Events</Link>
             </div>
         )
     }

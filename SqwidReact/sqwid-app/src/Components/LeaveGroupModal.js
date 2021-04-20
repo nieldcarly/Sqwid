@@ -5,21 +5,20 @@ export class LeaveGroupModal extends Component{
     constructor(props){
         super(props);
         this.groupId = props.groupId;
-        this.state = { userName: '' };
+        this.state = { userName: '', groupId: props.groupid };
         this.handleSubmit=this.handleSubmit.bind(this);
-        this.addUser = this.addUser.bind(this);
     }
 
-    addUser (e) {
-        this.setState({userName: e.target.value});
-    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({ groupId: nextProps.groupid });
+      }
 
     handleSubmit(event){
         event.preventDefault();
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch(process.env.REACT_APP_API + 'groups/leavegroup/' + this.groupId +'/' + userId,{
+        fetch(process.env.REACT_APP_API + 'groups/leavegroup/' + this.state.groupId +'/' + userId,{
             method:'DELETE',
             headers:{
                 'Accept':'application/json',
@@ -28,7 +27,7 @@ export class LeaveGroupModal extends Component{
         })
         .then(res=>res.json())
         .then(()=>{
-            alert('Failed');
+            alert('You have been successfully removed from the group.');
         },
         (error)=>{
             alert('You have been successfully removed from the group.');

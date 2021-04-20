@@ -10,14 +10,20 @@ export class Group extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { groups: [], addModalShow: false, groupNumber: 0 }
+        this.state = { 
+            groups: [], 
+            addModalShow: false, 
+            addUserGroupModalShow: false, 
+            addLeaveGroupModalShow: false, 
+            groupNumber: 0 
+        }
     }
 
     getUsersGroups() {
         const tokenString = sessionStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         const userId = userToken?.token;
-        fetch(process.env.REACT_APP_API + userId)
+        fetch(process.env.REACT_APP_API +'users/groups/' + userId)
             .then(response => response.json())
             .then(data => {
                 this.setState({ groups: data })
@@ -28,16 +34,22 @@ export class Group extends Component {
         this.getUsersGroups();
     }
 
-    componentDidUpdate() {
-        this.getUsersGroups();
-    }
+    // componentDidUpdate() {
+    //     this.getUsersGroups();
+    // }
+
+    openModalWithItem(group) {
+        this.setState({
+            groupNumber: group.GroupId,
+            addUserGroupModalShow: true
+        });
+     }
 
     render() {
         const { groups } = this.state;
         let addUserGroupModalClose = () => this.setState({ addUserGroupModalShow: false });
         let addModalClose = () => this.setState({ addModalShow: false });
         let addLeaveGroupModalClose = () => this.setState({ addLeaveGroupModalShow: false });
-
 
         return (
             <div className="generalbackground">
@@ -68,12 +80,11 @@ export class Group extends Component {
                                     <Link to={`/event/${group.GroupId}`}
                                         style={{ marginRight: 30 }}
                                         className="btn btn-primary"
-                                        activeclassName="is-active"
                                     >
                                         View Events
                                     </Link>
-                                    <Button className="yellowbtn" style={{ marginRight: 30 }} onClick={() => this.setState({ addUserGroupModalShow: true, groupNumber: group.GroupId })}>
-                                        Add Users to Group
+                                    <Button className="yellowbtn" style={{ marginRight: 30 }} onClick={() => this.openModalWithItem(group)}>
+                                        View/Add Members
                                     </Button>
                                     <Button variant="danger" onClick={() => this.setState({ addLeaveGroupModalShow: true, groupNumber: group.GroupId })}>Leave Group</Button>
                                 </td>
@@ -85,10 +96,10 @@ export class Group extends Component {
                     <Button variant="primary" onClick={() => this.setState({ addModalShow: true })}>
                         Create Group
                     </Button>
-                    <LeaveGroupModal show={this.state.addLeaveGroupModalShow} onHide={addLeaveGroupModalClose} groupid={this.state.groupNumber}></LeaveGroupModal>
-                    <CreateGroupModal show={this.state.addModalShow} onHide={addModalClose}></CreateGroupModal>
-                    <AddUsersToGroupModal show={this.state.addUserGroupModalShow} onHide={addUserGroupModalClose}></AddUsersToGroupModal>
                 </ButtonToolbar>
+                <LeaveGroupModal show={this.state.addLeaveGroupModalShow} onHide={addLeaveGroupModalClose} groupid={this.state.groupNumber}></LeaveGroupModal>
+                <CreateGroupModal show={this.state.addModalShow} onHide={addModalClose}></CreateGroupModal>
+                <AddUsersToGroupModal show={this.state.addUserGroupModalShow} onHide={addUserGroupModalClose} groupid={this.state.groupNumber}></AddUsersToGroupModal>
             </div>
         )
     }
