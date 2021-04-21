@@ -34,7 +34,7 @@ import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import ZoomOutIcon from "@material-ui/icons/ZoomOut";
 import dataJson from "../data.json";
 import dataJsonControlled from "../data.json.controlled";
-import { SketchField, Tools } from "react-sketch";
+import { SketchField, Tools } from "react-sketch2";
 import dataUrl from "../data.url";
 import DropZone from "react-dropzone";
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";

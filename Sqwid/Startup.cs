@@ -68,6 +68,8 @@ namespace Sqwid
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -86,7 +88,7 @@ namespace Sqwid
                     pattern: "api/{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseStaticFiles();
+
             //app.UseStaticFiles(new StaticFileOptions
             //{
             //    FileProvider = new PhysicalFileProvider(
