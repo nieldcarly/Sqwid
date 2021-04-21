@@ -23,9 +23,9 @@ export class GroupEvents extends Component {
         this.getGroupEvents();
     }
 
-    // componentDidUpdate() {
-    //     this.getGroupEvents();
-    // }
+    componentDidUpdate() {
+        this.getGroupEvents();
+    }
 
     render() {
         const {events}=this.state;

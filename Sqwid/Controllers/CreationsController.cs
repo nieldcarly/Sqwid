@@ -71,7 +71,7 @@ namespace Sqwid.Controllers
                 newCreation.CreationEventId = incomingData.CreationEventId;
                 newCreation.CreationCreatorId = incomingData.CreationCreatorId;
                 newCreation.CreationCreatorFirstName = _context.Users.Where(x => x.UserId == incomingData.CreationCreatorId).FirstOrDefault().UserFirstName;
-                newCreation.CreationCreatorFirstName = _context.Users.Where(x => x.UserId == incomingData.CreationCreatorId).FirstOrDefault().UserLastName;
+                newCreation.CreationCreatorLastName = _context.Users.Where(x => x.UserId == incomingData.CreationCreatorId).FirstOrDefault().UserLastName;
                 newCreation.CreationDescription = incomingData.CreationDescription;
                 newCreation.CreationImagePath = incomingData.CreationImagePath;
                 newCreation.CreationIsPublic = incomingData.CreationIsPublic;
@@ -98,7 +98,7 @@ namespace Sqwid.Controllers
                 var httpRequest = Request.Form;
                 var postedFile = httpRequest.Files[0];
                 string filename = postedFile.FileName;
-                var physicalPath = _env.ContentRootPath + "/Photos/" + filename;
+                var physicalPath = "C://Users/nield/source/repos/SqwidDeploy/Sqwid/Photos/" + filename;
 
                 using (var stream = new FileStream(physicalPath, FileMode.Create))
                 {

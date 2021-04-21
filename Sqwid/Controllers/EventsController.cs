@@ -44,7 +44,7 @@ namespace Sqwid.Controllers
             List<Event> allEvents = new List<Event>();
             foreach (var g in groups)
             {
-                List<Event> events = _context.Events.Where(x => x.EventGroupId == g.UserGroupId).Where(y => y.EventDueDate > DateTime.Now).ToList();
+                List<Event> events = _context.Events.Where(x => x.EventGroupId == g.UserGroupGroupId).Where(y => y.EventDueDate >= DateTime.Now).ToList();
                 allEvents.AddRange(events);
             }
             return Ok(allEvents);
@@ -57,7 +57,7 @@ namespace Sqwid.Controllers
             List<Event> allEvents = new List<Event>();
             foreach (var g in groups)
             {
-                List<Event> events = _context.Events.Where(x => x.EventGroupId == g.UserGroupId).Where(y => y.EventDueDate < DateTime.Now).ToList();
+                List<Event> events = _context.Events.Where(x => x.EventGroupId == g.UserGroupGroupId).Where(y => y.EventDueDate < DateTime.Now).ToList();
                 allEvents.AddRange(events);
             }
             return Ok(allEvents);

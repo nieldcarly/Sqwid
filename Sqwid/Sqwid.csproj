@@ -6,6 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Photos\adrien-ledoux-mBHuEkka5wM-unsplash %282%29.jpg" />
+    <Content Include="Photos\anonymous.png" />
+    <Content Include="Photos\boldandbrash.jpg" />
+    <Content Include="Photos\CarlyHeadshot.jpg" />
+    <Content Include="Photos\Iced Vanilla.png" />
+    <Content Include="Photos\spiral_steinmetz.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -16,19 +25,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\Photos\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Photos\adrien-ledoux-mBHuEkka5wM-unsplash %282%29.jpg" />
-    <None Include="wwwroot\Photos\anonymous.png" />
-    <None Include="wwwroot\Photos\boldandbrash.jpg" />
-    <None Include="wwwroot\Photos\CarlyHeadshot.jpg" />
-    <None Include="wwwroot\Photos\Iced Vanilla.png" />
-    <None Include="wwwroot\Photos\spiral_steinmetz.jpg" />
   </ItemGroup>
 
 

@@ -24,41 +24,43 @@ export class Creation extends Component {
         this.getEventCreations();
     }
 
-    // componentDidUpdate() {
-    //     this.getEventCreations();
-    // }
+    componentDidUpdate() {
+        this.getEventCreations();
+    }
 
     render() {
         const { creations } = this.state;
         let addModalClose = () => this.setState({ addModalShow: false });
 
         return (
-            <div style={{width:"100%", display:"flow-root"}}>
-                {creations.map(creation =>
-                <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} />
-                    <Card.Body>
-                        <Card.Title>{creation.CreationTitle}</Card.Title>
-                        <Card.Text>
-                            {creation.CreationDescription}
-                        </Card.Text>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                        <ListGroupItem>{creation.CreationCreatorFirstName + ' ' + creation.CreationCreatorLastName}</ListGroupItem>
-                    </ListGroup>
-                    <Card.Body>
-                        <Card.Link href={`/creationdetails/${creation.CreationId}`} className="btn btn-primary" style={{"width":"min-content"}}>View Creation</Card.Link>
-                        <Card.Link href="#" className="btn btn-danger" style={{"width":"min-content"}}>Delete Creation</Card.Link>
-                    </Card.Body>
-                </Card>
-                )}
+            <div className="generalbackground">
+                <div className="carddeck" style={{width: "100%"}}>
+                    {creations.map(creation =>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH + creation.CreationImagePath} />
+                        <Card.Body>
+                            <Card.Title>{creation.CreationTitle}</Card.Title>
+                            <Card.Text>
+                                {creation.CreationDescription}
+                            </Card.Text>
+                        </Card.Body>
+                        <ListGroup className="list-group-flush">
+                            <ListGroupItem>{creation.CreationCreatorFirstName + ' ' + creation.CreationCreatorLastName}</ListGroupItem>
+                        </ListGroup>
+                        <Card.Body>
+                            <Card.Link href={`/creationdetails/${creation.CreationId}`} className="btn btn-primary" style={{"width":"min-content"}}>View Creation</Card.Link>
+                            <Card.Link href="#" className="btn btn-danger" style={{"width":"min-content"}}>Delete Creation</Card.Link>
+                        </Card.Body>
+                    </Card>
+                    )}
+                </div>
                 <ButtonToolbar>
-                    <Button variant="primary" onClick={() => this.setState({ addModalShow: true })}>
-                        Add Creation
-                    </Button>
-                    <AddCreationModal show={this.state.addModalShow} onHide={addModalClose} eventId={this.eventId}></AddCreationModal>
-                </ButtonToolbar>
-                <Link to="/userevents" className="btn btn-primary" style={{ marginTop: 20 }}>Return to Events</Link>
+                        <Button variant="primary" onClick={() => this.setState({ addModalShow: true })}>
+                            Add Creation
+                        </Button>
+                        <AddCreationModal show={this.state.addModalShow} onHide={addModalClose} eventId={this.eventId}></AddCreationModal>
+                    </ButtonToolbar>
+                    <Link to="/userevents" className="btn btn-primary" style={{ marginTop: 20, marginBottom:20 }}>Return to Events</Link>
             </div>
         )
     }

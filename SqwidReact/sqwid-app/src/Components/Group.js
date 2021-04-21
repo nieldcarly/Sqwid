@@ -34,9 +34,9 @@ export class Group extends Component {
         this.getUsersGroups();
     }
 
-    // componentDidUpdate() {
-    //     this.getUsersGroups();
-    // }
+    componentDidUpdate() {
+        this.getUsersGroups();
+    }
 
     openModalWithItem(group) {
         this.setState({
